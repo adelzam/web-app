@@ -3,12 +3,11 @@ package com.springapp.mvc.common;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-
+import java.util.List;
 
 @Entity
-@Table(name = "airport")
-public class AirportInfo {
+@Table(name = "book")
+public class BookInfo {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name= "increment", strategy= "increment")
@@ -17,27 +16,15 @@ public class AirportInfo {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "city")
-    private String city;
+    @OneToMany(mappedBy = "book")
+    private List<TicketInfo> ticket;
 
-    @Column(name ="taxes")
-    private BigDecimal taxes;
-
-    public AirportInfo() {
+    public BookInfo() {
     }
 
-    public AirportInfo(String name, String city, BigDecimal taxes) {
+    public BookInfo(String name, List<TicketInfo> ticket) {
         this.name = name;
-        this.city = city;
-        this.taxes = taxes;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+        this.ticket = ticket;
     }
 
     public Long getId() {
@@ -56,11 +43,11 @@ public class AirportInfo {
         this.name = name;
     }
 
-    public BigDecimal getTaxes() {
-        return taxes;
+    public List<TicketInfo> getTicket() {
+        return ticket;
     }
 
-    public void setTaxes(BigDecimal taxes) {
-        this.taxes = taxes;
+    public void setTicket(List<TicketInfo> ticket) {
+        this.ticket = ticket;
     }
 }
