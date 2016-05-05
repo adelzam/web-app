@@ -3,7 +3,9 @@ package com.springapp.mvc;
 import com.springapp.mvc.common.AirportInfo;
 import com.springapp.mvc.common.FlightInfo;
 import com.springapp.mvc.common.RouteInfo;
+import com.springapp.mvc.repository.AirportRepository;
 import com.springapp.mvc.repository.FlightRepository;
+import com.springapp.mvc.repository.RoutesRepository;
 import com.springapp.mvc.services.AirportService;
 import com.springapp.mvc.services.FlightService;
 import com.springapp.mvc.services.RouteService;
@@ -34,16 +36,7 @@ public class FlightTest {
     }
 
     @Test
-    public void TestFlightRepository() {
-        applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
-        FlightRepository flightRepository = applicationContext.getBean(FlightRepository.class);
-        RouteService routeService = applicationContext.getBean(RouteService.class);
-        List<FlightInfo> flight = flightRepository.getFlightInfoByRoute(routeService.getRoute(1L, 2L));
-        assertEquals(2L, flight.get(0).getId().longValue());
-    }
-
-    @Test
-    public void TestAirportByName() {
+    public void TestAirport() {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         AirportService airportService = applicationContext.getBean(AirportService.class);
         Double val = 1000.00;
@@ -56,5 +49,35 @@ public class FlightTest {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         RouteService routeService = applicationContext.getBean(RouteService.class);
         assertEquals(1L, routeService.getRoute(1L, 2L).getId().longValue());
+    }
+
+    @Test
+    public void TestFlightRepository() {
+        applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
+        FlightRepository flightRepository = applicationContext.getBean(FlightRepository.class);
+        RouteService routeService = applicationContext.getBean(RouteService.class);
+        List<FlightInfo> flight = flightRepository.getFlightInfoByRoute(routeService.getRoute(1L, 2L));
+        assertEquals(2L, flight.get(0).getId().longValue());
+    }
+
+    @Test
+    public void TestAirportRepositoryByName() {
+        applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
+        AirportRepository airportRepository = applicationContext.getBean(AirportRepository.class);
+        assertEquals(2L, airportRepository.getAirportInfoByName("Казань").getId().longValue());
+    }
+
+    @Test
+    public void TestAirportRepositoryByCity() {
+        applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
+        AirportRepository airportRepository = applicationContext.getBean(AirportRepository.class);
+        assertEquals(1L, airportRepository.getAirportInfoByCity("Москва").getId().longValue());
+    }
+
+    @Test
+    public void TestRouteRepository() {
+        applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
+        RoutesRepository routesRepository = applicationContext.getBean(RoutesRepository.class);
+        assertEquals(1L, routesRepository.findRouteInfoByArrivalIdAndDepartureId(1L,2L).getId().longValue());
     }
 }
