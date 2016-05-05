@@ -9,8 +9,7 @@ import java.util.Date;
 @Table(name = "passengers")
 public class PassengersInfo {
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name= "increment", strategy= "increment")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "first_name")

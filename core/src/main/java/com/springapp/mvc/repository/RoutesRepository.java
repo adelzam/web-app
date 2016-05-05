@@ -1,7 +1,10 @@
 package com.springapp.mvc.repository;
 
-/**
- * Created by adelzamalutdinov on 05.05.16.
- */
-public class RoutesRepository {
+import com.springapp.mvc.common.RouteInfo;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface RoutesRepository extends JpaRepository<RouteInfo, Long> {
+        RouteInfo findRouteInfoByArrivalIdAndDepartureId(Long arrival_id, Long departure_id);
 }

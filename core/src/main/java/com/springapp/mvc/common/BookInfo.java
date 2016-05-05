@@ -9,8 +9,7 @@ import java.util.List;
 @Table(name = "book")
 public class BookInfo {
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name= "increment", strategy= "increment")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "name")

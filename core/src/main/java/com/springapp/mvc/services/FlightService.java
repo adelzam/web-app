@@ -28,14 +28,12 @@ public class FlightService {
     public List<FlightInfo> findFlight(String dep, String arr) {
         AirportInfo arrInfo = airportService.getAirportByNameOrCity(arr);
         AirportInfo depInfo = airportService.getAirportByNameOrCity(dep);
-        RouteInfo route = null;
-        List<FlightInfo> flight = null;
         if (arrInfo != null && depInfo != null) {
-            route = routeService.getRoute(arrInfo.getId(), depInfo.getId());
+            RouteInfo route = routeService.getRoute(depInfo.getId(), arrInfo.getId());
             if (route != null) {
-                flight = flightRepository.getFlightInfoByRouteId(route.getId());
+                return flightRepository.getFlightInfoByRoute(route);
             }
         }
-        return flight;
+        return null;
     }
 }

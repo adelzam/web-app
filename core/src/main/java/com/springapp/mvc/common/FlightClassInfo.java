@@ -12,8 +12,7 @@ import java.math.BigDecimal;
 @Table(name = "flight_class")
 public class FlightClassInfo {
     @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name= "increment", strategy= "increment")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "type")
