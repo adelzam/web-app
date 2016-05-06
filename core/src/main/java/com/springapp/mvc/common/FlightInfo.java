@@ -26,7 +26,12 @@ public class FlightInfo {
     private Integer seats;
 
     @Column(name = "date")
+    @Temporal(TemporalType.DATE)
     private Date date;
+
+    @Column(name = "time")
+    @Temporal(TemporalType.TIME)
+    private Date time;
 
     @Column(name = "check_in_num")
     private Integer check_in_num;

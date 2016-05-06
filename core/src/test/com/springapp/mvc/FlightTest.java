@@ -16,6 +16,9 @@ import org.springframework.jca.cci.core.InteractionCallback;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -25,13 +28,14 @@ import static org.junit.Assert.assertEquals;
  */
 public class FlightTest {
 
+
     private ApplicationContext applicationContext;
 
     @Test
     public void TestFlightService() {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         FlightService flightService = applicationContext.getBean(FlightService.class);
-        List<FlightInfo> flight = flightService.findFlight("Москва", "Казань");
+        List<FlightInfo> flight = flightService.findFlight("Москва", "Казань", new GregorianCalendar(2016, Calendar.MAY, 6).getTime());
         assertEquals(2L, flight.get(0).getId().longValue());
     }
 
@@ -40,7 +44,7 @@ public class FlightTest {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         AirportService airportService = applicationContext.getBean(AirportService.class);
         Double val = 1000.00;
-        AirportInfo airportInfo = new AirportInfo(1L, "Домодедово", "Москва", val);
+        AirportInfo airportInfo = new AirportInfo(2L, "Домодедово", "Москва", val);
         assertEquals(airportInfo, airportService.getAirportByNameOrCity("Москва"));
     }
 
@@ -48,7 +52,7 @@ public class FlightTest {
     public void TestRoute() {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         RouteService routeService = applicationContext.getBean(RouteService.class);
-        assertEquals(1L, routeService.getRoute(1L, 2L).getId().longValue());
+        assertEquals(1L, routeService.getRoute(2L, 3L).getId().longValue());
     }
 
     @Test
@@ -56,7 +60,7 @@ public class FlightTest {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         FlightRepository flightRepository = applicationContext.getBean(FlightRepository.class);
         RouteService routeService = applicationContext.getBean(RouteService.class);
-        List<FlightInfo> flight = flightRepository.getFlightInfoByRoute(routeService.getRoute(1L, 2L));
+        List<FlightInfo> flight = flightRepository.getFlightInfoByRouteAndDate(routeService.getRoute(2L, 3L),new GregorianCalendar(2016, Calendar.MAY, 6).getTime());
         assertEquals(2L, flight.get(0).getId().longValue());
     }
 
@@ -64,20 +68,20 @@ public class FlightTest {
     public void TestAirportRepositoryByName() {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         AirportRepository airportRepository = applicationContext.getBean(AirportRepository.class);
-        assertEquals(2L, airportRepository.getAirportInfoByName("Казань").getId().longValue());
+        assertEquals(3L, airportRepository.getAirportInfoByName("Казань").getId().longValue());
     }
 
     @Test
     public void TestAirportRepositoryByCity() {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         AirportRepository airportRepository = applicationContext.getBean(AirportRepository.class);
-        assertEquals(1L, airportRepository.getAirportInfoByCity("Москва").getId().longValue());
+        assertEquals(2L, airportRepository.getAirportInfoByCity("Москва").getId().longValue());
     }
 
     @Test
     public void TestRouteRepository() {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         RoutesRepository routesRepository = applicationContext.getBean(RoutesRepository.class);
-        assertEquals(1L, routesRepository.findRouteInfoByArrivalIdAndDepartureId(1L,2L).getId().longValue());
+        assertEquals(1L, routesRepository.findRouteInfoByArrivalIdAndDepartureId(2L,3L).getId().longValue());
     }
 }

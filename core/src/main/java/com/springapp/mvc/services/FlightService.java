@@ -8,6 +8,7 @@ import com.springapp.mvc.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,13 +26,13 @@ public class FlightService {
     @Autowired
     FlightRepository flightRepository;
 
-    public List<FlightInfo> findFlight(String dep, String arr) {
+    public List<FlightInfo> findFlight(String dep, String arr, Date date) {
         AirportInfo arrInfo = airportService.getAirportByNameOrCity(arr);
         AirportInfo depInfo = airportService.getAirportByNameOrCity(dep);
         if (arrInfo != null && depInfo != null) {
             RouteInfo route = routeService.getRoute(depInfo.getId(), arrInfo.getId());
             if (route != null) {
-                return flightRepository.getFlightInfoByRoute(route);
+                return flightRepository.getFlightInfoByRouteAndDate(route, date);
             }
         }
         return null;
