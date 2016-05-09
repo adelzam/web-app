@@ -34,7 +34,7 @@ public class FlightInfo {
     @Column(name = "checkInNum")
     private Integer checkInNum;
 
-    @Column(name = "check_in_open")
+    @Column(name = "checkInOpen")
     private Boolean checkInOpen;
 
     public FlightInfo() {
