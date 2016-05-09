@@ -29,19 +29,23 @@ public class FlightInfo {
     @Column(name = "date")
     private Date date;
 
-    @Column(name = "check_in_num")
-    private Integer check_in_num;
+    @Column(name = "checkInNum")
+    private Integer checkInNum;
+
+    @Column(name = "checkInOpen")
+    private Boolean checkInOpen;
 
     public FlightInfo() {
     }
 
-    public FlightInfo(Long number, RouteInfo route, String plane, Integer seats, Date date, Integer check_in_num) {
+    public FlightInfo(Long number, RouteInfo route, String plane, Integer seats, Date date, Integer checkInNum) {
         this.number = number;
         this.route = route;
         this.plane = plane;
         this.seats = seats;
         this.date = date;
-        this.check_in_num = check_in_num;
+        this.checkInNum = checkInNum;
+        this.checkInOpen = false;
     }
 
     public Long getId() {
@@ -92,11 +96,19 @@ public class FlightInfo {
         this.date = date;
     }
 
-    public Integer getCheck_in_num() {
-        return check_in_num;
+    public Integer getCheckInNum() {
+        return checkInNum;
     }
 
-    public void setCheck_in_num(Integer check_in_num) {
-        this.check_in_num = check_in_num;
+    public void setCheckInNum(Integer checkInNum) {
+        this.checkInNum = checkInNum;
+    }
+
+    public Boolean getCheckInOpen() {
+        return checkInOpen;
+    }
+
+    public void setCheckInOpen(Boolean checkInOpen) {
+        this.checkInOpen = checkInOpen;
     }
 }

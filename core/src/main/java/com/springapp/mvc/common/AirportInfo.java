@@ -26,7 +26,8 @@ public class AirportInfo {
     public AirportInfo() {
     }
 
-    public AirportInfo(String name, String city, BigDecimal taxes) {
+    public AirportInfo(Long id,String name, String city, BigDecimal taxes) {
+        this.id = id;
         this.name = name;
         this.city = city;
         this.taxes = taxes;
@@ -62,5 +63,28 @@ public class AirportInfo {
 
     public void setTaxes(BigDecimal taxes) {
         this.taxes = taxes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AirportInfo that = (AirportInfo) o;
+
+        if (!id.equals(that.id)) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (city != null ? !city.equals(that.city) : that.city != null) return false;
+        return taxes != null ? taxes.equals(that.taxes) : that.taxes == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (taxes != null ? taxes.hashCode() : 0);
+        return result;
     }
 }

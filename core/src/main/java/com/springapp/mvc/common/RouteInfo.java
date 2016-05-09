@@ -26,7 +26,8 @@ public class RouteInfo {
     public RouteInfo() {
     }
 
-    public RouteInfo(AirportInfo departure, AirportInfo arrival, BigDecimal cost) {
+    public RouteInfo(Long id, AirportInfo departure, AirportInfo arrival, BigDecimal cost) {
+        this.id = id;
         this.departure = departure;
         this.arrival = arrival;
         this.cost = cost;
@@ -62,5 +63,28 @@ public class RouteInfo {
 
     public void setCost(BigDecimal cost) {
         this.cost = cost;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        RouteInfo routeInfo = (RouteInfo) o;
+
+        if (!id.equals(routeInfo.id)) return false;
+        if (departure != null ? !departure.equals(routeInfo.departure) : routeInfo.departure != null) return false;
+        if (arrival != null ? !arrival.equals(routeInfo.arrival) : routeInfo.arrival != null) return false;
+        return cost != null ? cost.equals(routeInfo.cost) : routeInfo.cost == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + (departure != null ? departure.hashCode() : 0);
+        result = 31 * result + (arrival != null ? arrival.hashCode() : 0);
+        result = 31 * result + (cost != null ? cost.hashCode() : 0);
+        return result;
     }
 }
