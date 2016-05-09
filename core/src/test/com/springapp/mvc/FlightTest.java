@@ -9,23 +9,16 @@ import com.springapp.mvc.repository.RoutesRepository;
 import com.springapp.mvc.services.AirportService;
 import com.springapp.mvc.services.FlightService;
 import com.springapp.mvc.services.RouteService;
+import org.apache.log4j.helpers.DateTimeDateFormat;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jca.cci.core.InteractionCallback;
-
-import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by adelzamalutdinov on 05.05.16.
- */
 public class FlightTest {
 
 
@@ -60,7 +53,7 @@ public class FlightTest {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         FlightRepository flightRepository = applicationContext.getBean(FlightRepository.class);
         RouteService routeService = applicationContext.getBean(RouteService.class);
-        List<FlightInfo> flight = flightRepository.getFlightInfoByRouteAndDate(routeService.getRoute(2L, 3L),new GregorianCalendar(2016, Calendar.MAY, 6).getTime());
+        List<FlightInfo> flight = flightRepository.getFlightInfoByRouteAndDate(routeService.getRoute(2L, 3L), new GregorianCalendar(2016, Calendar.MAY, 6).getTime());
         assertEquals(2L, flight.get(0).getId().longValue());
     }
 
@@ -82,6 +75,6 @@ public class FlightTest {
     public void TestRouteRepository() {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         RoutesRepository routesRepository = applicationContext.getBean(RoutesRepository.class);
-        assertEquals(1L, routesRepository.findRouteInfoByArrivalIdAndDepartureId(2L,3L).getId().longValue());
+        assertEquals(1L, routesRepository.findRouteInfoByArrivalIdAndDepartureId(2L, 3L).getId().longValue());
     }
 }
