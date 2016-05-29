@@ -1,4 +1,4 @@
-package controllers;
+package com.springapp.mvc.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Ann on 19.05.2016.
  */
 @Controller
-public class CabinetController {
-    @RequestMapping(value = "/cabinet", method = RequestMethod.GET)
+public class UslugiController {
+    @RequestMapping(value = "/services", method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        return "cabinet";
+        return "uslugi";
     }
 }

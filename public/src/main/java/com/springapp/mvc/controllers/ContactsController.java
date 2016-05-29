@@ -1,4 +1,4 @@
-package controllers;
+package com.springapp.mvc.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -6,14 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Контроллер главной страницы
+ * Created by Ann on 19.05.2016.
  */
 @Controller
-public class MainController {
+public class ContactsController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/contacts", method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        return "index";
+        return "contacts";
     }
-
 }
