@@ -33,6 +33,7 @@ public class TicketService {
                 if((tickets=ticketRepository.getTicketInfoByBookIdAndPassengerId(
                         bookService.getBookByName(book).getId(),
                         passenger.getId()))!=null) {
+                    flightService.updateCheckInInfo();
                     return tickets;
                 }
             }
