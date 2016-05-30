@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface TicketRepository extends JpaRepository<TicketInfo, Long> {
 
-    List<TicketInfo> getTicketInfoByBookIdAndPassengerId(Long book_id, Long passenger_id);
+    List<TicketInfo> getTicketInfoByBookIdAndPassengerIdOrderById(Long book_id, Long passenger_id);
 }

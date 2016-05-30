@@ -30,7 +30,7 @@ public class TicketService {
         List<TicketInfo> tickets = null;
         if (passengers!=null) {
             for (PassengersInfo passenger : passengers) {
-                if((tickets=ticketRepository.getTicketInfoByBookIdAndPassengerId(
+                if((tickets=ticketRepository.getTicketInfoByBookIdAndPassengerIdOrderById(
                         bookService.getBookByName(book).getId(),
                         passenger.getId()))!=null) {
                     flightService.updateCheckInInfo();

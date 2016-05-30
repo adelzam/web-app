@@ -75,4 +75,20 @@ public class TicketInfo {
     public void setSeat(String seat) {
         this.seat = seat;
     }
+
+    public PassengersInfo getPassenger() {
+        return passenger;
+    }
+
+    public void setPassenger(PassengersInfo passenger) {
+        this.passenger = passenger;
+    }
+
+    public FlightClassInfo getFlight_class() {
+        return flight_class;
+    }
+
+    public void setFlight_class(FlightClassInfo flight_class) {
+        this.flight_class = flight_class;
+    }
 }
