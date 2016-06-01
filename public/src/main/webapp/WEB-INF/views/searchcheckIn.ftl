@@ -12,7 +12,7 @@
     </#if>
     <#if tickets??>
         <#if book??>
-        <h2>Билеты доступные по брони № <label style="color: red">${book}</label></h2>
+            <h2>Билеты доступные по брони № <label style="color: red">${book}</label></h2>
         </#if>
         <table class="table">
             <tr>
@@ -30,13 +30,16 @@
                     <td>${ticket.flight.date}</td>
                     <td>${ticket.flight.time}</td>
                     <td>${ticket.flight_class.type}</td>
-                    <td><#if ticket.check_in==true><button href="#" style="background-color: red; color: white">Посадочный талон</button>
-                            <#elseif true==ticket.flight.checkInOpen>
-                                <button href="/checkin/${ticket.flight.id}"  style="background-color: red; color: white">
-                                    Зарегестрироваться
-                                </button>
-                            <#elseif false==ticket.flight.checkInOpen>
-                                <div style="background-color: lightgray; color: black">Регистрация будет доступна позднее</div>
+                    <td><#if ticket.check_in==true>
+                        <button href="#" style="background-color: red; color: white">Посадочный талон</button>
+                    <#elseif true==ticket.flight.checkInOpen>
+                        <a href="/checkin/${ticket.id}">
+                            <button style="background-color: red; color: white">
+                                Зарегестрироваться
+                            </button>
+                        </a>
+                    <#elseif false==ticket.flight.checkInOpen>
+                        <div style="background-color: lightgray; color: black">Регистрация недоступна</div>
                     </#if>
                     </td>
                 </tr>

@@ -2,6 +2,7 @@ package com.springapp.mvc.controllers;
 
 import com.springapp.mvc.common.TicketInfo;
 import com.springapp.mvc.services.TicketService;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -13,9 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
-/**
- * Created by adelzamalutdinov on 29.05.16.
- */
 @Controller
 @RequestMapping("/webcheckin")
 public class CheckInPageController {

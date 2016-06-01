@@ -11,6 +11,7 @@ import com.springapp.mvc.services.FlightService;
 import com.springapp.mvc.services.RouteService;
 import org.apache.log4j.helpers.DateTimeDateFormat;
 import org.junit.Test;
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.Calendar;

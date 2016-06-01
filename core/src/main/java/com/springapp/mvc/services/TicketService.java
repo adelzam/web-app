@@ -7,6 +7,7 @@ import com.springapp.mvc.common.TicketInfo;
 import com.springapp.mvc.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,14 +26,15 @@ public class TicketService {
     @Autowired
     private FlightService flightService;
 
-    public List<TicketInfo> getTicketsByBookAndPassenger(String book, String lastName){
+    @Transactional
+    public List<TicketInfo> getTicketsByBookAndPassenger(String book, String lastName) {
         List<PassengersInfo> passengers = passengersService.getPassengersByLastName(lastName);
         List<TicketInfo> tickets = null;
-        if (passengers!=null) {
+        if (passengers != null) {
             for (PassengersInfo passenger : passengers) {
-                if((tickets=ticketRepository.getTicketInfoByBookIdAndPassengerIdOrderById(
+                if ((tickets = ticketRepository.getTicketInfoByBookIdAndPassengerIdOrderById(
                         bookService.getBookByName(book).getId(),
-                        passenger.getId()))!=null) {
+                        passenger.getId())) != null) {
                     flightService.updateCheckInInfo();
                     return tickets;
                 }
@@ -41,16 +43,29 @@ public class TicketService {
         return null;
     }
 
+    @Transactional
     public boolean ticketCheckIn(Long ticket_id, String seat) {
         TicketInfo ticket = ticketRepository.findOne(ticket_id);
-        if (ticket!=null) {
+        if (ticket != null) {
             FlightInfo flight = flightService.getFlightById(ticket.getFlight().getId());
-            if(flight!=null&&flight.getCheckInOpen()){
+            if (flight != null && flight.getCheckInOpen()) {
                 ticket.setSeat(seat);
-                flight.setCheckInNum(flight.getSeats()+1);
+                ticket.setCheck_in(true);
+                flight.setCheckInNum(flight.getCheckInNum() + 1);
                 return true;
             }
         }
         return false;
+    }
+
+
+    @Transactional
+    public TicketInfo getTicketInfo(Long id) {
+        return ticketRepository.findOne(id);
+    }
+
+    @Transactional
+    public List<TicketInfo> getTicketInfoByFlight(Long flight_id) {
+        return ticketRepository.getTicketInfoByFlightId(flight_id);
     }
 }

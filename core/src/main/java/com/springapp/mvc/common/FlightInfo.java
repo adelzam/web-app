@@ -17,11 +17,9 @@ public class FlightInfo {
     @JoinColumn(name = "route_id")
     private RouteInfo route;
 
-    @Column(name = "plane")
-    private String plane;
-
-    @Column(name = "seats")
-    private Integer seats;
+    @ManyToOne
+    @JoinColumn(name = "plane_id")
+    private PlaneInfo plane;
 
     @Column(name = "date")
     @Temporal(TemporalType.DATE)
@@ -30,6 +28,14 @@ public class FlightInfo {
     @Column(name = "time")
     @Temporal(TemporalType.TIME)
     private Date time;
+
+    @Column(name = "ardate")
+    @Temporal(TemporalType.DATE)
+    private Date ardate;
+
+    @Column(name = "artime")
+    @Temporal(TemporalType.TIME)
+    private Date artime;
 
     @Column(name = "checkInNum")
     private Integer checkInNum;
@@ -40,15 +46,16 @@ public class FlightInfo {
     public FlightInfo() {
     }
 
-    public FlightInfo(Long number, RouteInfo route, String plane, Integer seats, Date date, Date time, Integer checkInNum) {
+    public FlightInfo(Long number, RouteInfo route, PlaneInfo plane, Date date, Date time, Date ardate, Date artime, Integer checkInNum, Boolean checkInOpen) {
         this.number = number;
         this.route = route;
         this.plane = plane;
-        this.seats = seats;
         this.date = date;
         this.time = time;
+        this.ardate = ardate;
+        this.artime = artime;
         this.checkInNum = checkInNum;
-        this.checkInOpen = false;
+        this.checkInOpen = checkInOpen;
     }
 
     public Long getId() {
@@ -75,20 +82,13 @@ public class FlightInfo {
         this.route = route;
     }
 
-    public String getPlane() {
+
+    public PlaneInfo getPlane() {
         return plane;
     }
 
-    public void setPlane(String plane) {
+    public void setPlane(PlaneInfo plane) {
         this.plane = plane;
-    }
-
-    public Integer getSeats() {
-        return seats;
-    }
-
-    public void setSeats(Integer seats) {
-        this.seats = seats;
     }
 
     public Date getDate() {
@@ -117,6 +117,22 @@ public class FlightInfo {
 
     public Boolean getCheckInOpen() {
         return checkInOpen;
+    }
+
+    public Date getArdate() {
+        return ardate;
+    }
+
+    public void setArdate(Date ardate) {
+        this.ardate = ardate;
+    }
+
+    public Date getArtime() {
+        return artime;
+    }
+
+    public void setArtime(Date artime) {
+        this.artime = artime;
     }
 
     public void setCheckInOpen(Boolean checkInOpen) {

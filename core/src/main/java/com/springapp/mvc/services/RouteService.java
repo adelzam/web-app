@@ -4,17 +4,13 @@ import com.springapp.mvc.common.RouteInfo;
 import com.springapp.mvc.repository.RoutesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
-import java.util.List;
-
-/**
- * Created by adelzamalutdinov on 05.05.16.
- */
+import org.springframework.transaction.annotation.Transactional;
 @Service
 public class RouteService {
     @Autowired
     RoutesRepository routesRepository;
+
+    @Transactional
     public RouteInfo getRoute(Long arrival_id, Long departure_id) {
         return routesRepository.findRouteInfoByArrivalIdAndDepartureId(arrival_id, departure_id);
     }
