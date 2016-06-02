@@ -1,4 +1,5 @@
 <!-- Navigation -->
+<#assign sec=JspTaglibs["http://www.springframework.org/security/tags"]>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -26,9 +27,26 @@
                 <li>
                     <a href="/contacts">Контакты</a>
                 </li>
-                <li>
-                    <a href="/">Личный кабинет</a>
-                </li>
+
+            <#--<@sec.authorize ifAnyGranted="ROLE_ANONYMOUS">-->
+                <#--<li>-->
+                    <#--<a class="login" href="/login">Login</a>-->
+                <#--</li>-->
+                <#--<li>-->
+                    <#--<a class="login" href="/reg">Registration</a>-->
+                <#--</li>-->
+            <#--</@sec.authorize>-->
+            <#--&lt;#&ndash; Если уже авторизован, то ссылки в личный кабинет и на выход &ndash;&gt;-->
+            <#--<@sec.authorize access="isAuthenticated()">-->
+                <#--<li>-->
+                    <#--<a class="login" href="/cabinet" style="text-transform: lowercase; color: yellow;">-->
+                        <#--<@sec.authentication property="principal.username" />-->
+                    <#--</a></li>-->
+                <#--<li>-->
+                    <#--<a class="login" href="/logout" style="color: yellow;">Logout</a>-->
+                <#--</li>-->
+            <#--</@sec.authorize>-->
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->

@@ -11,19 +11,19 @@
            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
        <!-- Определяем папку, в которой будем искать DAO компоненты (@Repository) -->
-       <context:component-scan base-package="com.springapp.mvc.repository" />
+       <context:component-scan base-package="com.springapp.mvc.repository.jpa" />
 
        <!-- Определяем папку, в которой будем искать классы отнаследованные от JpaRepository -->
        <jpa:repositories base-package="com.springapp.mvc.repository" />
 
        <!-- Настраивает управление транзакциями с помощью аннотации @Transactional -->
-       <tx:annotation-driven transaction-manager="jpaTransactionManager" />
+       <tx:annotation-driven transaction-manager="jpaTransactionManager" proxy-target-class="true"/>
 
        <!-- Менеджер транзакций -->
        <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
              p:entityManagerFactory-ref="entityManagerFactory" />
        <bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
-             p:entityManagerFactory-ref="entityManagerFactory" />
+             p:entityManagerFactory-ref="entityManagerFactory"/>
 
        <bean id="hibernatePersistenceProvider" class="org.hibernate.jpa.HibernatePersistenceProvider"/>
 
