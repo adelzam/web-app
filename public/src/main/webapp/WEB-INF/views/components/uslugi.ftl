@@ -15,7 +15,7 @@
                         </span>
             </div>
             <div class="media-body">
-                <h4 class="media-heading">Регистрация на рейс</h4>
+                <h4 class="media-heading"><a href="/webcheckin" style="text-decoration: none">Регистрация на рейс</a></h4>
                 <p>Онлайн регистрация на рейс и выбор мест на борту самолёта доступны на сайте и в мобильном
                     приложении S7, а посадочный талон - в Вашем смартфоне.</p>
             </div>

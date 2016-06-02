@@ -57,8 +57,7 @@
             <div style="height: 48px; width: 43px; float: left ;margin-top: 40px;margin-left: 5px "></div>
             <div>
                 <input tabindex="2" name="arr"
-                       style="width: 307px; height: 48px; font-size: 25px; float: left; margin-top: 40px; margin-left: 5px" value="" list="arr_list">
-                </input>
+                       style="width: 307px; height: 48px; font-size: 25px; float: left; margin-top: 40px; margin-left: 5px" value="" list="arr_list"/>
                 <datalist id="arr_list">
                 <#if arrival??>
                     <#list arrival as item>
@@ -68,7 +67,7 @@
                 </datalist>
             </div>
             <div>
-                <input type="date" name="date" value="2016-06-01"
+                <input type="date" name="date" value="2016-06-02" min="2016-06-02"
                        style="width: 268px; height: 48px; font-size: 25px; float: left; margin-top: 40px; margin-left: 5px">
             </div>
             <div>

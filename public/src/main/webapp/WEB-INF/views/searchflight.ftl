@@ -5,7 +5,7 @@
 <#-- @ftlvariable name="date" type="java.lang.String" -->
 <#-- @ftlvariable name="num" type="java.lang.String" -->
 <#assign form=JspTaglibs["http://www.springframework.org/tags/form"]>
-<script src="../../resources/js/script.js"></script>
+<script src="../../resources/js/script.js" xmlns="http://www.w3.org/1999/html"></script>
 <#include "template.ftl">
 <@mainTemplate title="Airline tickets  | Cabinet" />
 <#macro m_body>
@@ -55,7 +55,7 @@
         </form>
     </div>
     <#if !flight??>
-    <h2>Рейсов не найдено</h2>
+        <h2>Рейсов не найдено</h2>
     </#if>
     <#if flight??>
         <h2>Выберете рейс</h2>
@@ -83,11 +83,15 @@
                             <td>
                                 <div align="center">
                                     <br>
-                                    <h3 style="color: green"><input type="radio" id="${item.id}:${prise_index}" name="choice" value="${item.id}:${prise_index}"/>&nbsp;<label
+                                    <h3 style="color: green">
+                                        <input type="radio" id="${item.id}:${prise_index}"
+                                               onchange="showflight('TJ${item.number}','${item.route.departure.name}, ${item.route.departure.city}', '${item.time}', '${prise}')"
+                                               name="choice" value="${item.id}:${prise_index}"/>&nbsp;<label
                                             for="${item.id}:${prise_index}">${prise}
                                     </label>
                                     </h3>
                                     <br>
+                                    <h6>Здесь прописаны <br>условия тарифа</h6>
                                 </div>
                             </td>
                         </#list>
@@ -95,6 +99,21 @@
                 </#list>
             </table>
         </form>
+    <br>
+    <br>
+        <div id="show" style="display: none">
+                <h3>Выбранный рейс<br>
+                    <label id="flight" style="color: red"></label>
+                    <br>
+                Время вылета<br>
+                    <label id="time"  style="color: red"></label><br>
+                Аэропорт вылета<br>
+                    <label id="dep"  style="color: red"></label><br>
+                Стоимость
+                    <br>
+                    <label id="cost"  style="color: red"></label></h3>
+            <button onclick="/personal" style="color: white; background-color: red">Продолжить</button>
+        </div>
     </#if>
 
 </div>

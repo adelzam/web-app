@@ -36,3 +36,15 @@ $(document).ready(function () {
         }
     });
 });
+
+function showflight(val1, val2, val3, val4) {
+    var div1 = document.getElementById("show").style.display;
+    if (div1 == "none") {
+        div1 = "block";
+    }
+    document.getElementById("flight").innerHTML = val1;
+    document.getElementById("dep").innerHTML = val2;
+    document.getElementById("time").innerHTML = val3;
+    document.getElementById("cost").innerHTML = val4;
+    document.getElementById("show").style.display = div1;
+}
