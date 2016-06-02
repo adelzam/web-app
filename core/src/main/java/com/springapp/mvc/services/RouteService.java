@@ -11,7 +11,7 @@ public class RouteService {
     RoutesRepository routesRepository;
 
     @Transactional
-    public RouteInfo getRoute(Long arrival_id, Long departure_id) {
+    public RouteInfo getRoute(Long departure_id, Long arrival_id) {
         return routesRepository.findRouteInfoByArrivalIdAndDepartureId(arrival_id, departure_id);
     }
 }

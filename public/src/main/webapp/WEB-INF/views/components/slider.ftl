@@ -40,11 +40,11 @@
         <span class="icon-next"></span>
     </a>
     <div style="width: 1237px; height: 128px; margin-left: 101px;margin-top: -250px; position: relative; background-color: rgba(66,66,66,0.8); align-items: center; z-index: 5;">
-        <form method="get" name="searchForm">
+        <form method="post" name="searchForm" action="/search/results">
             <div>
-                <input id="dep" tabindex="1"
+                <input name="dep" tabindex="1"
                        style="width: 307px; height: 48px; font-size: 25px; float: left; margin-top: 40px; margin-left: 7px"
-                       list="dep_list">
+                       list="dep_list" value="">
                 </input>
                 <datalist id="dep_list">
                 <#if departure??>
@@ -56,9 +56,8 @@
             </div>
             <div style="height: 48px; width: 43px; float: left ;margin-top: 40px;margin-left: 5px "></div>
             <div>
-                <input id="arr" tabindex="2"
-                       style="width: 307px; height: 48px; font-size: 25px; float: left; margin-top: 40px; margin-left: 5px"
-                       list="arr_list">
+                <input tabindex="2" name="arr"
+                       style="width: 307px; height: 48px; font-size: 25px; float: left; margin-top: 40px; margin-left: 5px" value="" list="arr_list">
                 </input>
                 <datalist id="arr_list">
                 <#if arrival??>
@@ -69,11 +68,11 @@
                 </datalist>
             </div>
             <div>
-                <input type="date" id="date" value="2016-06-01"
+                <input type="date" name="date" value="2016-06-01"
                        style="width: 268px; height: 48px; font-size: 25px; float: left; margin-top: 40px; margin-left: 5px">
             </div>
             <div>
-                <input type="number" id="num" max="6" min="1"
+                <input type="number" name="num" max="6" min="1" value="1"
                        style="width: 182px; height: 48px; font-size: 25px; float: left; margin-top: 40px;margin-left: 5px">
             </div>
             <div>

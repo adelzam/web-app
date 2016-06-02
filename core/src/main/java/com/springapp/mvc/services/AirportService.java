@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -15,15 +16,17 @@ public class AirportService {
     private AirportRepository airportRepository;
 
     @Transactional
-    public AirportInfo getAirportByNameOrCity(String name) {
+    public List<AirportInfo> getAirportByNameOrCity(String name) {
+        List<AirportInfo> airportList = new ArrayList<AirportInfo>();
         AirportInfo airport = airportRepository.getAirportInfoByName(name);
-        if (airport == null) {
-            airport = airportRepository.getAirportInfoByCity(name);
+        if (airport != null) {
+            airportList.add(airport);
         }
-        if (airport == null) {
-            return null;
+        List<AirportInfo> city;
+        if ((city = airportRepository.getAirportInfoByCity(name)) != null) {
+            airportList.addAll(city);
         }
-        return airport;
+        return airportList;
     }
 
     @Transactional

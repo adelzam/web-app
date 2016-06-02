@@ -36,7 +36,6 @@ public class AirportListAspect {
     public void includeTopGoods() {
         List<AirportInfo> airportInfos = airportService.getAirports();
         request.setAttribute(ARRIVAL_LIST, airportInfos);
-        System.out.println(airportInfos==null);
         request.setAttribute(DEPARTURE_LIST, airportInfos);
     }
 }

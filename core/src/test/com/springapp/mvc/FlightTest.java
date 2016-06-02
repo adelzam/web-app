@@ -66,13 +66,6 @@ public class FlightTest {
     }
 
     @Test
-    public void TestAirportRepositoryByCity() {
-        applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
-        AirportRepository airportRepository = applicationContext.getBean(AirportRepository.class);
-        assertEquals(2L, airportRepository.getAirportInfoByCity("Москва").getId().longValue());
-    }
-
-    @Test
     public void TestRouteRepository() {
         applicationContext = new ClassPathXmlApplicationContext("spring-core.xml");
         RoutesRepository routesRepository = applicationContext.getBean(RoutesRepository.class);
