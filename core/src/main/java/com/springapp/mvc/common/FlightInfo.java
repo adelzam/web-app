@@ -1,7 +1,5 @@
 package com.springapp.mvc.common;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -19,11 +17,9 @@ public class FlightInfo {
     @JoinColumn(name = "route_id")
     private RouteInfo route;
 
-    @Column(name = "plane")
-    private String plane;
-
-    @Column(name = "seats")
-    private Integer seats;
+    @ManyToOne
+    @JoinColumn(name = "plane_id")
+    private PlaneInfo plane;
 
     @Column(name = "date")
     @Temporal(TemporalType.DATE)
@@ -33,19 +29,33 @@ public class FlightInfo {
     @Temporal(TemporalType.TIME)
     private Date time;
 
-    @Column(name = "check_in_num")
-    private Integer check_in_num;
+    @Column(name = "ardate")
+    @Temporal(TemporalType.DATE)
+    private Date ardate;
+
+    @Column(name = "artime")
+    @Temporal(TemporalType.TIME)
+    private Date artime;
+
+    @Column(name = "checkInNum")
+    private Integer checkInNum;
+
+    @Column(name = "checkInOpen")
+    private Boolean checkInOpen;
 
     public FlightInfo() {
     }
 
-    public FlightInfo(Long number, RouteInfo route, String plane, Integer seats, Date date, Integer check_in_num) {
+    public FlightInfo(Long number, RouteInfo route, PlaneInfo plane, Date date, Date time, Date ardate, Date artime, Integer checkInNum, Boolean checkInOpen) {
         this.number = number;
         this.route = route;
         this.plane = plane;
-        this.seats = seats;
         this.date = date;
-        this.check_in_num = check_in_num;
+        this.time = time;
+        this.ardate = ardate;
+        this.artime = artime;
+        this.checkInNum = checkInNum;
+        this.checkInOpen = checkInOpen;
     }
 
     public Long getId() {
@@ -72,20 +82,13 @@ public class FlightInfo {
         this.route = route;
     }
 
-    public String getPlane() {
+
+    public PlaneInfo getPlane() {
         return plane;
     }
 
-    public void setPlane(String plane) {
+    public void setPlane(PlaneInfo plane) {
         this.plane = plane;
-    }
-
-    public Integer getSeats() {
-        return seats;
-    }
-
-    public void setSeats(Integer seats) {
-        this.seats = seats;
     }
 
     public Date getDate() {
@@ -96,11 +99,43 @@ public class FlightInfo {
         this.date = date;
     }
 
-    public Integer getCheck_in_num() {
-        return check_in_num;
+    public Integer getCheckInNum() {
+        return checkInNum;
     }
 
-    public void setCheck_in_num(Integer check_in_num) {
-        this.check_in_num = check_in_num;
+    public void setCheckInNum(Integer checkInNum) {
+        this.checkInNum = checkInNum;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public Boolean getCheckInOpen() {
+        return checkInOpen;
+    }
+
+    public Date getArdate() {
+        return ardate;
+    }
+
+    public void setArdate(Date ardate) {
+        this.ardate = ardate;
+    }
+
+    public Date getArtime() {
+        return artime;
+    }
+
+    public void setArtime(Date artime) {
+        this.artime = artime;
+    }
+
+    public void setCheckInOpen(Boolean checkInOpen) {
+        this.checkInOpen = checkInOpen;
     }
 }

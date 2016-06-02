@@ -1,7 +1,5 @@
 package com.springapp.mvc.common;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,11 +10,11 @@ public class PassengersInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "first_name")
-    private String first_name;
+    @Column(name = "firstName")
+    private String firstName;
 
-    @Column(name = "last_name")
-    private String last_name;
+    @Column(name = "lastName")
+    private String lastName;
 
     @Column(name = "passport")
     private String passport;
@@ -27,9 +25,9 @@ public class PassengersInfo {
     public PassengersInfo() {
     }
 
-    public PassengersInfo(String first_name, String last_name, String passport, Date birth) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public PassengersInfo(String firstName, String lastName, String passport, Date birth) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.passport = passport;
         this.birth = birth;
     }
@@ -42,20 +40,20 @@ public class PassengersInfo {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassport() {
