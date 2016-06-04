@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
-public class TicketController {
+public class PrintDocController {
     @Autowired
     TicketService ticketService;
     @RequestMapping(value = "/ticket/{id}", method = RequestMethod.GET)
@@ -25,5 +25,15 @@ public class TicketController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
         model.addAttribute("checkIn",String.valueOf(dateFormat.format(checkTime)));
         return "ticket";
+    }
+
+    @RequestMapping(value = "/boardingpass/{id}", method = RequestMethod.GET)
+    public String showBoardingPass(Model model, HttpSession session, @PathVariable("id") Long id) {
+        TicketInfo ticket = ticketService.getTicketInfo(id);
+        model.addAttribute("ticket",ticket );
+        Date checkTime= new Date(ticket.getFlight().getTime().getTime() - 1200000L);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        model.addAttribute("board",String.valueOf(dateFormat.format(checkTime)));
+        return "boardingpass";
     }
 }
