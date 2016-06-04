@@ -31,7 +31,7 @@
                     <td>${ticket.flight.time}</td>
                     <td>${ticket.flight_class.type}</td>
                     <td><#if ticket.check_in==true>
-                        <button href="#" style="background-color: red; color: white">Посадочный талон</button>
+                        <a href="/boardingpass"> <button style="background-color: red; color: white">Посадочный талон</button></a>
                     <#elseif true==ticket.flight.checkInOpen>
                         <a href="/checkin/${ticket.id}">
                             <button style="background-color: red; color: white">
