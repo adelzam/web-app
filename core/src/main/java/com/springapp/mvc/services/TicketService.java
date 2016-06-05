@@ -66,6 +66,16 @@ public class TicketService {
     }
 
     @Transactional
+    public List<TicketInfo> getTickets() {
+        return ticketRepository.findAll();
+    }
+
+    @Transactional
+    public void deleteTicket(Long id) {
+        ticketRepository.delete(id);
+    }
+
+    @Transactional
     public List<TicketInfo> getTicketInfoByFlight(Long flight_id) {
         return ticketRepository.getTicketInfoByFlightId(flight_id);
     }

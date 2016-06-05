@@ -3,12 +3,12 @@
 <html>
 <head>
     <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
-    <link href="../../resources/css/ticket.css" rel="stylesheet">
+    <link href="../../../resources/css/ticket.css" rel="stylesheet">
 </head>
 <body>
 <div style="position:absolute;left:50%;margin-left:-297px;top:0px;width:595px;height:842px;border-style:outset;overflow:hidden">
     <div style="position:absolute;left:0px;top:0px">
-        <img src="../../resources/img/background1.jpg" style="width:595px; height:842px"></div>
+        <img src="../../../resources/img/background1.jpg" style="width:595px; height:842px"></div>
     <div style="position:absolute;left:78.52px;top:31.64px" class="cls_003"><span
             class="cls_003">Маршрутная квитанция</span></div>
     <div style="position:absolute;left:78.52px;top:62.95px" class="cls_004"><span class="cls_004">Внимание! Это не посадочный талон</span>
@@ -30,7 +30,7 @@
     </div>
     <div style="position:absolute;left:179.71px;top:143.63px" class="cls_008"><span class="cls_008">${ticket.passenger.passport}</span>
     </div>
-    <div style="position:absolute;left:256.25px;top:143.63px" class="cls_008"><span class="cls_008">9262353759859</span>
+    <div style="position:absolute;left:256.25px;top:143.63px" class="cls_008"><span class="cls_008">${ticket.num}</span>
     </div>
     <div style="position:absolute;left:346.96px;top:143.63px" class="cls_008"><span class="cls_008">-</span>
     </div>

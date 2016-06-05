@@ -18,5 +18,13 @@ public class PassengersService {
     public List<PassengersInfo> getPassengersByLastName(String lastName){
         return passengersRepository.getPassengersInfoByLastName(lastName);
     }
+    @Transactional
+    public List<PassengersInfo> getPassengers(){
+        return passengersRepository.findAll();
+    }
 
+    @Transactional
+    public void deletePassengers(Long id) {
+        passengersRepository.delete(id);
+    }
 }

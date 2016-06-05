@@ -39,7 +39,7 @@ public class CheckInPageController {
         List<TicketInfo> list = ticketService.getTicketsByBookAndPassenger(checkInSearchForm.getBook(), checkInSearchForm.getName());
         model.addAttribute("tickets", list);
         model.addAttribute("book", checkInSearchForm.getBook());
-        return "searchcheckIn";
+        return "search/searchcheckIn";
     }
 
 }

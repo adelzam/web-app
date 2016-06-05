@@ -7,6 +7,7 @@
 <script src="../../../resources/js/script.js" type="text/javascript"></script>
 <div>
 <#assign a = ['A', 'B', 'C', 'D', 'E','F']>
+<#assign k = num>
     <div style="display: inline-block; float: left">
         <table class="table" style="width: 100pt;">
             <tr>
@@ -24,11 +25,11 @@
             <tr>
                 <td>${num}</td>
                 <#list seats1 as seat>
-                    <td><#if seat><img src="../../../resources/img/book.jpg"> <#else>  <a
-                            href="#${num}${a[seat_index]}"
-                            onclick="hide_show('${num}${a[seat_index]}');return false;"><img alt="" class="notActive"
-                                                                                             src="../../../resources/img/free.png">
-                    </a></#if></td>
+                    <td><#if seat><img src="../../../resources/img/book.jpg"> <#else>
+                        <a href="#${num}${a[seat_index]}"
+                           onclick="hide_show('${num}${a[seat_index]}');return false;">
+                            <img alt="" class="notActive" src="../../../resources/img/free.png"></a>
+                    </#if></td>
                     <#if ((seat_index+1)==3)>
                         <td></td>
                     </#if>
@@ -40,7 +41,7 @@
         </table>
     </div>
     <div style="display: inline-block; float: left; margin-left: 80pt">
-    <#list 3..num-1 as seat2>
+    <#list k..num-1 as seat2>
         <#list 0..5 as j>
             <div class="tab-pane fade active in" id="${seat2}${a[j]}" style="display: none">
                 <h3>Вы выбрали место <br><label
@@ -52,10 +53,11 @@
                 <h2>${ticket.passenger.firstName+" "+ticket.passenger.lastName}</h2>
                 <br>
                 <br>
-                    <a href="/checkinres/${ticket.id}/${seat2}${a[j]}"><button class="button  button--primary js-submit"
-                            style="color: aliceblue; background-color: red" >ПОДТВЕРДИТЬ
+                <a href="/checkinres/${ticket.id}/${seat2}${a[j]}">
+                    <button class="button  button--primary js-submit"
+                            style="color: aliceblue; background-color: red">ПОДТВЕРДИТЬ
                     </button>
-                    </a>
+                </a>
             </div>
         </#list>
     </#list>

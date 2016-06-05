@@ -52,7 +52,7 @@ public class FlightSearchController {
         model.addAttribute("dep", form.getDeparture());
         model.addAttribute("date", form.getDate());
         model.addAttribute("passnum", form.getPassnum());
-        return "searchflight";
+        return "search/searchflight";
     }
 
     @RequestMapping(value = "/results", method = RequestMethod.POST)
@@ -83,6 +83,6 @@ public class FlightSearchController {
         model.addAttribute("date", request.getParameter("date"));
         model.addAttribute("num", num);
         model.addAttribute("classindexlist", flightService.getFlightClassOrderById());
-        return "searchflight";
+        return "search/searchflight";
     }
 }

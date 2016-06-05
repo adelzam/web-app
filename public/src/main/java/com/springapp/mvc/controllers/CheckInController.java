@@ -84,6 +84,7 @@ public class CheckInController {
     @RequestMapping(value = "/checkinres/{id}/{seat}", method = RequestMethod.GET)
     public String checkInDone(Model model, HttpSession session, @PathVariable("seat") String seatnum,  @PathVariable("id") Long id) {
         ticketService.ticketCheckIn(id, seatnum);
+        model.addAttribute("id", id);
         return "checkin/checkinresult";
     }
 }

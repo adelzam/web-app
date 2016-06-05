@@ -33,6 +33,9 @@ public class TicketInfo {
     @Column(name="seat")
     private String seat;
 
+    @Column(name = "num")
+    private Long num;
+
     public TicketInfo() {
     }
 
@@ -90,5 +93,13 @@ public class TicketInfo {
 
     public void setFlight_class(FlightClassInfo flight_class) {
         this.flight_class = flight_class;
+    }
+
+    public Long getNum() {
+        return num;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
     }
 }

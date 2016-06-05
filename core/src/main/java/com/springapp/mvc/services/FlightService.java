@@ -58,6 +58,11 @@ public class FlightService {
     }
 
     @Transactional
+    public List<FlightInfo> getFlights() {
+        return flightRepository.findAll();
+    }
+
+    @Transactional
     public void updateCheckInInfo() {
         List<FlightInfo> flights = flightRepository.findAll();
         for (FlightInfo flight : flights) {
@@ -73,5 +78,10 @@ public class FlightService {
     }
     @Transactional
     public List<FlightClassInfo> getFlightClassOrderById() {return flightClassRepository.getAllByOrderById();
+    }
+
+    @Transactional
+    public void deleteFlight(Long id) {
+        flightRepository.delete(id);
     }
 }

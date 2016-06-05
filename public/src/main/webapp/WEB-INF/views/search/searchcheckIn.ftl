@@ -1,6 +1,6 @@
 <#-- @ftlvariable name="tickets" type="java.util.List<com.springapp.mvc.common.TicketInfo>" -->
 <#-- @ftlvariable name="book" type="java.lang.String" -->
-<#include "template.ftl">
+<#include "../template.ftl">
 <@mainTemplate title="Airline tickets  | Cabinet" />
 <#macro m_body>
 
@@ -54,7 +54,7 @@
             </#list>
         </table>
     </#if>
-    <#include "components/footer.ftl" />
+    <#include "../components/footer.ftl" />
 </div>
 
 </#macro>

@@ -24,7 +24,7 @@ public class PrintDocController {
         Date checkTime= new Date(ticket.getFlight().getTime().getTime() - 2400000L);
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
         model.addAttribute("checkIn",String.valueOf(dateFormat.format(checkTime)));
-        return "ticket";
+        return "doc/ticket";
     }
 
     @RequestMapping(value = "/boardingpass/{id}", method = RequestMethod.GET)
@@ -34,6 +34,6 @@ public class PrintDocController {
         Date checkTime= new Date(ticket.getFlight().getTime().getTime() - 1200000L);
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
         model.addAttribute("board",String.valueOf(dateFormat.format(checkTime)));
-        return "boardingpass";
+        return "doc/boardingpass";
     }
 }

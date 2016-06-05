@@ -1,6 +1,6 @@
 <#assign form=JspTaglibs["http://www.springframework.org/tags/form"]>
 <#include "../template.ftl">
-<@mainTemplate title="Airline tickets  | Cabinet" />
+<@mainTemplate title="Airline tickets  | Search book" />
 <#macro m_body>
 
 <div class="container">
@@ -10,12 +10,12 @@
         <div class="column">
             <@form.form commandName="checkInForm" action="/webcheckin" acceptCharset="UTF-8" method="post">
                 <div>
-                    <label for="surmaneLogin">Фамилия пассажира (латинскими)</label>
+                    <label>Фамилия пассажира (латинскими)</label>
                     <@form.input path="name" cssStyle="width: 500px; height: 43px; font-size: 32px;"/>
                     <@form.errors path="name" cssClass="form_error" /><br><br>
                 </div>
                 <div>
-                    <label for="numberLogin">Номер брони или билета</label>
+                    <label>Номер брони или билета</label>
                     <@form.input path="book" cssStyle="width: 500px; height: 43px; font-size: 32px;"/>
                     <@form.errors path="book" cssClass="form_error" /><br><br>
                 </div>

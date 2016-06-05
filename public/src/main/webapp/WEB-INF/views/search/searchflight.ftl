@@ -6,8 +6,8 @@
 <#-- @ftlvariable name="num" type="java.lang.String" -->
 <#-- @ftlvariable name="classindexlist" type="java.util.List<com.springapp.mvc.common.FlightClassInfo>" -->
 <#assign form=JspTaglibs["http://www.springframework.org/tags/form"]>
-<script src="../../resources/js/script.js" xmlns="http://www.w3.org/1999/html"></script>
-<#include "template.ftl">
+<script src="../../../resources/js/script.js" xmlns="http://www.w3.org/1999/html"></script>
+<#include "../template.ftl">
 <@mainTemplate title="Airline tickets  | Cabinet" />
 <#macro m_body>
 
@@ -152,7 +152,7 @@
         </div>
     </#if>
     <div>
-        <#include "components/footer.ftl" />
+        <#include "../components/footer.ftl" />
     </div>
 </div>
 </#macro>
