@@ -18,8 +18,8 @@
                 <td>${num}</td>
                 <#list seats1 as seat>
                     <td><#if seat>
-                        <img src="../../resources/img/book.jpg"> <#else>
-                        <a href="#${num}${a[seat_index]}"><img src="../../resources/img/free.png"> </a>
+                        <img src="../../../resources/img/book.jpg"> <#else>
+                        <a href="#${num}${a[seat_index]}"><img src="../../../resources/img/free.png"> </a>
                     </#if></td>
                     <#if !((seat_index+1)==4)>
                         <td></td>

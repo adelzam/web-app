@@ -30,6 +30,7 @@ public class FlightSearchController {
     private HttpServletRequest request;
 
     private static final String ATTR_NEWSEARCH_FORM = "searchForm";
+
     @Autowired
     private FlightService flightService;
 
@@ -61,20 +62,18 @@ public class FlightSearchController {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = format.parse(request.getParameter("date"));
         String num = request.getParameter("num");
-        System.out.println(dep + " " + arr);
         List<FlightInfo> list = flightService.findFlight(dep, arr, date);
-        List<FlightClassInfo> classInfos = flightService.getFlightClass();
+        List<FlightClassInfo> classInfos = flightService.getFlightClassOrderById();
         HashMap<Long, ArrayList<BigDecimal>> costmap = new HashMap<Long, ArrayList<BigDecimal>>();
         if (list != null) {
             for (FlightInfo flightInfo : list) {
                 ArrayList<BigDecimal> cost = new ArrayList<BigDecimal>();
                 for (int i = 0; i < 4; i++) {
-                    cost.add(BigDecimal.valueOf(
-                            flightInfo.getRoute().getArrival().getTaxes() +
-                                    flightInfo.getRoute().getArrival().getTaxes() +
-                                    flightInfo.getRoute().getCost()).multiply(classInfos.get(i).getCost()));
+                    cost.add(BigDecimal.valueOf(flightInfo.getRoute().getCost())
+                            .multiply(classInfos.get(i).getCost()
+                            .multiply(BigDecimal.valueOf(Long.parseLong(num)))));
                 }
-                costmap.put(flightInfo.getId(),cost);
+                costmap.put(flightInfo.getId(), cost);
             }
         }
         model.addAttribute("flight", list);
@@ -83,6 +82,7 @@ public class FlightSearchController {
         model.addAttribute("dep", dep);
         model.addAttribute("date", request.getParameter("date"));
         model.addAttribute("num", num);
+        model.addAttribute("classindexlist", flightService.getFlightClassOrderById());
         return "searchflight";
     }
 }

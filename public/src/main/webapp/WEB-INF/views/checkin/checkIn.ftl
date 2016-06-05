@@ -1,5 +1,5 @@
 <#assign form=JspTaglibs["http://www.springframework.org/tags/form"]>
-<#include "template.ftl">
+<#include "../template.ftl">
 <@mainTemplate title="Airline tickets  | Cabinet" />
 <#macro m_body>
 
@@ -32,7 +32,7 @@
             </div>
         </div>
     </div>
-    <#include "components/footer.ftl" />
+    <#include "../components/footer.ftl" />
 </div>
 
 </#macro>

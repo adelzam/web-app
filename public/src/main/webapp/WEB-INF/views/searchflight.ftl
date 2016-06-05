@@ -4,6 +4,7 @@
 <#-- @ftlvariable name="dep" type="java.lang.String" -->
 <#-- @ftlvariable name="date" type="java.lang.String" -->
 <#-- @ftlvariable name="num" type="java.lang.String" -->
+<#-- @ftlvariable name="classindexlist" type="java.util.List<com.springapp.mvc.common.FlightClassInfo>" -->
 <#assign form=JspTaglibs["http://www.springframework.org/tags/form"]>
 <script src="../../resources/js/script.js" xmlns="http://www.w3.org/1999/html"></script>
 <#include "template.ftl">
@@ -60,6 +61,7 @@
     <#if flight??>
         <h2>Выберете рейс</h2>
         <h2>${dep}&#8594;${arr}</h2>
+        <h2>Количество пассажиров: <span style="color: red">${num}</span></h2>
         <form>
             <table class="table" id="flights">
                 <tr>
@@ -69,6 +71,7 @@
                     <th style="text-align: center">Базовый Бизнес</th>
                     <th style="text-align: center">Гибкий Бизнес</th>
                 </tr>
+                <#assign class = ['Базовый Эконом','Гибкий Эконом','Базовый Бизнес','Гибкий Бизнес']>
                 <#list flight as item>
                     <tr style="cursor: pointer">
                         <td>
@@ -80,12 +83,16 @@
                         </td>
                         <#assign costitem = cost?values[item_index]>
                         <#list costitem as prise>
+                        <#assign classindex = classindexlist[prise_index]>
                             <td>
                                 <div align="center">
                                     <br>
                                     <h3 style="color: green">
                                         <input type="radio" id="${item.id}:${prise_index}"
-                                               onchange="showflight('TJ${item.number}','${item.route.departure.name}, ${item.route.departure.city}', '${item.time}', '${prise}')"
+                                               onchange="showflight('${item.route.departure.city}, ${item.route.departure.name}',
+                                                       '${item.route.arrival.city}, ${item.route.arrival.name}',
+                                                       '${item.date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.time}&nbsp;&nbsp;${item.route.departure.name}&nbsp;&#8594;&nbsp;${item.route.arrival.name}&nbsp;&nbsp;${item.artime}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TJ${item.number}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${class[prise_index]}',
+                                                       ${item.route.departure.taxes}, ${item.route.arrival.taxes}, ${item.route.cost}, ${num}, '${classindex.cost}' )"
                                                name="choice" value="${item.id}:${prise_index}"/>&nbsp;<label
                                             for="${item.id}:${prise_index}">${prise}
                                     </label>
@@ -99,22 +106,53 @@
                 </#list>
             </table>
         </form>
-    <br>
-    <br>
+        <br>
+        <br>
         <div id="show" style="display: none">
-                <h3>Выбранный рейс<br>
-                    <label id="flight" style="color: red"></label>
-                    <br>
-                Время вылета<br>
-                    <label id="time"  style="color: red"></label><br>
-                Аэропорт вылета<br>
-                    <label id="dep"  style="color: red"></label><br>
-                Стоимость
-                    <br>
-                    <label id="cost"  style="color: red"></label></h3>
-            <button onclick="/personal" style="color: white; background-color: red">Продолжить</button>
+            <h3>Вы выбрали<span style="margin-left: 700px;">Стоимость</span></h3>
+            <div style="width: 840px; background-color: lightyellow; display: inline-block; float: left">
+                <h3 style="margin-left: 2%;"><label id="dep" style="font-weight: 400"></label>
+                    &#8594; <label id="arr" style="font-weight: 400"></label></h3>
+                <h4 style="margin-left: 2%;"><label id="info" style="font-weight: 200"></label>
+                </h4>
+            </div>
+            <div style="width: 270px; background-color: lightyellow; display: inline-block; float: right">
+                <table style="margin-left: 2%">
+                    <tr>
+                        <td><br></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px">${num} Билета</td>
+                        <td id="sum"></td>
+                    </tr>
+                    <tr>
+                        <td><br></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px">Таксы</td>
+                        <td id="taxes"></td>
+                    </tr>
+                    <tr>
+                        <td><br></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px">Сборы</td>
+                        <td id="assemblies"></td>
+                    </tr>
+                    <tr>
+                        <td><br><br><br></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 150px"><h2 style="font-weight: 200">Итого</h2></td>
+                        <td><h2 style="font-weight: 200" id="total"></h2></td>
+                    </tr>
+                </table>
+                <button onclick="/personal" style="color: white; background-color: red; width: 270px; height: 50px; font-size: 30px; font-weight: 200">Продолжить</button>
+            </div>
         </div>
     </#if>
-
+    <div>
+        <#include "components/footer.ftl" />
+    </div>
 </div>
 </#macro>

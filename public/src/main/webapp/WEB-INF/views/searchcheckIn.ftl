@@ -44,7 +44,7 @@
                     </#if>
                     </td>
                     <td>
-                        <a href="/ticket/${ticket.id}" target="_blank">
+                        <a href="/ticket/${ticket.id}" target="_blank" >
                             <button style="background-color: red; color: white">
                                 Билет
                             </button>

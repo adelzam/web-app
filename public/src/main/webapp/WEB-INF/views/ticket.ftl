@@ -64,7 +64,7 @@
     </div>
     <div style="position:absolute;left:116.50px;top:287.00px" class="cls_018"><span class="cls_018">${ticket.flight.time}<br> ${ticket.flight.route.departure.city},</span>
     </div>
-    <div style="position:absolute;left:201.26px;top:287.00px" class="cls_018"><span class="cls_018">${ticket.flight.artime}<br> ${ticket.flight.route.arrival.city}</span>
+    <div style="position:absolute;left:201.26px;top:287.00px" class="cls_018"><span class="cls_018">${ticket.flight.artime}<br> ${ticket.flight.route.arrival.city},</span>
     </div>
     <div style="position:absolute;left:286.01px;top:286.99px" class="cls_007"><span class="cls_007">Базовый</span></div>
     <div style="position:absolute;left:438.23px;top:287.00px" class="cls_018"><span class="cls_018">${ticket.flight.time} ${ticket.flight.route.departure.city},<br> ${ticket.flight.route.departure.name}</span>
@@ -75,7 +75,7 @@
     </div>
     <div style="position:absolute;left:116.50px;top:295.84px" class="cls_018"><span class="cls_018"><br>${ticket.flight.route.departure.name}</span>
     </div>
-    <div style="position:absolute;left:201.26px;top:295.84px" class="cls_007"><span class="cls_007"><br>Терминал: 1</span>
+    <div style="position:absolute;left:201.26px;top:295.84px" class="cls_007"><span class="cls_018"><br>${ticket.flight.route.arrival.name}</span>
     </div>
     <div style="position:absolute;left:286.01px;top:295.84px" class="cls_007"><span class="cls_007">Эконом</span></div>
     <div style="position:absolute;left:35.15px;top:313.81px" class="cls_004"><span class="cls_004">Это важно!</span>
@@ -101,7 +101,7 @@
     <div style="position:absolute;left:35.15px;top:414.24px" class="cls_015"><span class="cls_015">детали вашего маршрута, отправьте билет родным и близким или</span>
     </div>
     <div style="position:absolute;left:319.46px;top:414.94px" class="cls_009"><span class="cls_009">Таксы</span></div>
-    <div style="position:absolute;left:437.38px;top:414.94px" class="cls_008"><span class="cls_008"><#assign taxes= ticket.flight.route.departure.taxes+ticket.flight.route.arrival.taxes>${taxes}RUB</span>
+    <div style="position:absolute;left:437.38px;top:414.94px" class="cls_008"><span class="cls_008"><#assign taxes= (ticket.flight.route.departure.taxes+ticket.flight.route.arrival.taxes)*ticket.flight_class.cost+100>${taxes}RUB</span>
     </div>
     <div style="position:absolute;left:35.15px;top:422.75px" class="cls_015"><span class="cls_015">внесите изменения в данные пассажиров.</span>
     </div>

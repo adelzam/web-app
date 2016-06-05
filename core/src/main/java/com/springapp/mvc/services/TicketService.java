@@ -30,11 +30,12 @@ public class TicketService {
     public List<TicketInfo> getTicketsByBookAndPassenger(String book, String lastName) {
         List<PassengersInfo> passengers = passengersService.getPassengersByLastName(lastName);
         List<TicketInfo> tickets = null;
+        BookInfo bookres = null;
         if (passengers != null) {
             for (PassengersInfo passenger : passengers) {
+                if ((bookres = bookService.getBookByName(book) )!=null)
                 if ((tickets = ticketRepository.getTicketInfoByBookIdAndPassengerIdOrderById(
-                        bookService.getBookByName(book).getId(),
-                        passenger.getId())) != null) {
+                        bookres.getId(), passenger.getId())) != null) {
                     flightService.updateCheckInInfo();
                     return tickets;
                 }

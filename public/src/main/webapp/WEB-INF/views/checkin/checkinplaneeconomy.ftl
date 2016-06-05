@@ -4,7 +4,7 @@
 <#-- @ftlvariable name="class" type="java.lang.String" -->
 <#-- @ftlvariable name="num" type="java.lang.Integer" -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="../../resources/js/script.js" type="text/javascript"></script>
+<script src="../../../resources/js/script.js" type="text/javascript"></script>
 <div>
 <#assign a = ['A', 'B', 'C', 'D', 'E','F']>
     <div style="display: inline-block; float: left">
@@ -24,10 +24,10 @@
             <tr>
                 <td>${num}</td>
                 <#list seats1 as seat>
-                    <td><#if seat><img src="../../resources/img/book.jpg"> <#else>  <a
+                    <td><#if seat><img src="../../../resources/img/book.jpg"> <#else>  <a
                             href="#${num}${a[seat_index]}"
                             onclick="hide_show('${num}${a[seat_index]}');return false;"><img alt="" class="notActive"
-                                                                                             src="../../resources/img/free.png">
+                                                                                             src="../../../resources/img/free.png">
                     </a></#if></td>
                     <#if ((seat_index+1)==3)>
                         <td></td>

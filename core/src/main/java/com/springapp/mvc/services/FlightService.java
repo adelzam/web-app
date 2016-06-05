@@ -44,7 +44,7 @@ public class FlightService {
                 if (route != null) {
                     flight.addAll(flightRepository.getFlightInfoByRouteAndDate(route, date));
                 }
-                if(flight.size()!=0){
+                if (flight.size() != 0) {
                     return flight;
                 }
             }
@@ -71,9 +71,7 @@ public class FlightService {
             }
         }
     }
-
     @Transactional
-    public List<FlightClassInfo> getFlightClass(){
-        return flightClassRepository.findAll();
+    public List<FlightClassInfo> getFlightClassOrderById() {return flightClassRepository.getAllByOrderById();
     }
 }

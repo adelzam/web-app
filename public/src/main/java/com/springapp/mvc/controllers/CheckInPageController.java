@@ -27,14 +27,14 @@ public class CheckInPageController {
     @RequestMapping(method = RequestMethod.GET)
     public String printCheckInForm() {
         request.setAttribute(ATTR_NEWCHECKIN_FORM,new NewCheckInSearchForm());
-        return "checkIn";
+        return "checkin/checkIn";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String printCheckInList(@Valid @ModelAttribute(ATTR_NEWCHECKIN_FORM) NewCheckInSearchForm checkInSearchForm,
                                    BindingResult bindingResult, ModelMap model, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
-            return "checkIn";
+            return "checkin/checkIn";
         }
         List<TicketInfo> list = ticketService.getTicketsByBookAndPassenger(checkInSearchForm.getBook(), checkInSearchForm.getName());
         model.addAttribute("tickets", list);

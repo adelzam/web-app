@@ -1,14 +1,11 @@
 package com.springapp.mvc.controllers;
 
 import com.springapp.mvc.common.FlightInfo;
-import com.springapp.mvc.common.PlaneInfo;
 import com.springapp.mvc.common.TicketInfo;
 import com.springapp.mvc.services.TicketService;
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -69,7 +66,7 @@ public class CheckInController {
             model.addAttribute("ticket", ticket);
             session.setAttribute("ticket", ticket);
             model.addAttribute("session", session);
-        return "checkinplane";
+        return "checkin/checkinplane";
     }
 
     private List<ArrayList<Boolean>> initBookedSeats(int num, int num1) {
@@ -87,6 +84,6 @@ public class CheckInController {
     @RequestMapping(value = "/checkinres/{id}/{seat}", method = RequestMethod.GET)
     public String checkInDone(Model model, HttpSession session, @PathVariable("seat") String seatnum,  @PathVariable("id") Long id) {
         ticketService.ticketCheckIn(id, seatnum);
-        return "checkinresult";
+        return "checkin/checkinresult";
     }
 }

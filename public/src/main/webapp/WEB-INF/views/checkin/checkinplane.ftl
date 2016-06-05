@@ -3,7 +3,7 @@
 <#-- @ftlvariable name="class" type="java.lang.String" -->
 <#-- @ftlvariable name="num" type="java.lang.Integer" -->
 
-<#include "template.ftl">
+<#include "../template.ftl">
 <@mainTemplate title="Airline tickets  | Check in" />
 <#macro m_body>
 <div class="container">
@@ -23,7 +23,7 @@
             <#include "checkinplaneeconomy.ftl"/>
         </#if>
     </#if>
-    <#include "components/footer.ftl" />
+    <#include "../components/footer.ftl" />
 </div>
 
 </#macro>
