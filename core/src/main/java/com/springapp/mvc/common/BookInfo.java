@@ -21,9 +21,8 @@ public class BookInfo {
     public BookInfo() {
     }
 
-    public BookInfo(String name, List<TicketInfo> ticket) {
+    public BookInfo(String name) {
         this.name = name;
-        this.ticket = ticket;
     }
 
     public Long getId() {

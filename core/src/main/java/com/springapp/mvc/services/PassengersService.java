@@ -29,6 +29,11 @@ public class PassengersService {
     }
 
     @Transactional
+    public PassengersInfo getPassengerByPassport(String passport){
+        return passengersRepository.getPassengersInfoByPassport(passport);
+    }
+
+    @Transactional
     public void deletePassengers(Long id) {
         passengersRepository.delete(id);
     }

@@ -71,6 +71,9 @@ public class TicketService {
     }
 
     @Transactional
+    public void addTicket(TicketInfo ticketInfo) {ticketRepository.save(ticketInfo);}
+
+    @Transactional
     public void deleteTicket(Long id) {
         ticketRepository.delete(id);
     }

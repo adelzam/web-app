@@ -17,6 +17,11 @@ public class BookService {
     }
 
     @Transactional
+    public BookInfo saveBook(BookInfo bookInfo) {
+        return bookRepository.save(bookInfo);
+    }
+
+    @Transactional
     public String generateBook() {
         char[] book = bookRepository.findTop1ByOrderByIdDesc().getName().toCharArray();
         char symb;

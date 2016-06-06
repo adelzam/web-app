@@ -19,6 +19,9 @@ public class NewUpdateFlightForm {
     private String route;
 
     @NotEmpty(message = "Поле обязательно для заполнения")
+    private String plane;
+
+    @NotEmpty(message = "Поле обязательно для заполнения")
     @Pattern(regexp = "[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])",
             message = "Неверный формат номера документа")
     private String date;
@@ -88,5 +91,13 @@ public class NewUpdateFlightForm {
 
     public void setArtime(String artime) {
         this.artime = artime;
+    }
+
+    public String getPlane() {
+        return plane;
+    }
+
+    public void setPlane(String plane) {
+        this.plane = plane;
     }
 }

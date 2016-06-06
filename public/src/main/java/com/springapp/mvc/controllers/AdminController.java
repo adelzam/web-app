@@ -2,6 +2,7 @@ package com.springapp.mvc.controllers;
 
 import com.springapp.mvc.common.FlightInfo;
 import com.springapp.mvc.common.PassengersInfo;
+import com.springapp.mvc.common.PlaneInfo;
 import com.springapp.mvc.common.TicketInfo;
 
 import java.io.IOException;
@@ -43,7 +44,7 @@ public class AdminController {
     private AirportService airportService;
 
     @Autowired
-    private BookService bookService;
+    private PlaneService planeService;
 
     @Autowired
     private RouteService routeService;
@@ -137,12 +138,14 @@ public class AdminController {
         NewUpdateFlightForm form = new NewUpdateFlightForm();
         FlightInfo flightInfo = flightService.getFlightById(id);
         model.addAttribute("routes", routeService.getRoutes());
+        model.addAttribute("planes", planeService.getAll());
         form.setNumber(flightInfo.getNumber().toString());
         form.setRoute(flightInfo.getRoute().getDeparture().getName()+" : "+flightInfo.getRoute().getArrival().getName());
         form.setArdate(flightInfo.getArdate().toString());
         form.setArtime(flightInfo.getArtime().toString());
         form.setDate(flightInfo.getDate().toString());
         form.setTime(flightInfo.getTime().toString());
+        form.setPlane(flightInfo.getPlane().getName());
         request.setAttribute(ATTR_UPDATEFLIGHT_FORM,form);
         model.addAttribute("id", id);
         return "updateFlight";
@@ -155,6 +158,29 @@ public class AdminController {
             return "updateFlight";
         }
         FlightInfo info = flightService.getFlightById(id);
+        flightService.updateFlight(updateFlightInfo(info, flightForm));
+        response.sendRedirect("/admin");
+        return "admin/mainadmin";
+    }
+    @RequestMapping(value = "add/flight", method = RequestMethod.GET)
+    public String printAddFlightForm(ModelMap model) throws ParseException {
+        model.addAttribute("routes", routeService.getRoutes());
+        model.addAttribute("planes", planeService.getAll());
+        request.setAttribute(ATTR_UPDATEFLIGHT_FORM,new NewUpdateFlightForm());
+        return "addFlight";
+    }
+
+    @RequestMapping(value = "add/flight", method = RequestMethod.POST)
+    public String printAddFlightRes(@Valid @ModelAttribute(ATTR_UPDATEFLIGHT_FORM) NewUpdateFlightForm flightForm,
+                                 BindingResult bindingResult, ModelMap model, HttpServletResponse response) throws IOException, ParseException {
+        if (bindingResult.hasErrors()) {
+            return "addFlight";
+        }
+        flightService.updateFlight(updateFlightInfo(new FlightInfo(), flightForm));
+        response.sendRedirect("/admin");
+        return "admin/mainadmin";
+    }
+    private FlightInfo updateFlightInfo(FlightInfo info, NewUpdateFlightForm flightForm) throws ParseException {
         SimpleDateFormat formatDate = new SimpleDateFormat();
         formatDate.applyPattern("yyyy-MM-dd");
         SimpleDateFormat formatTime = new SimpleDateFormat();
@@ -164,11 +190,10 @@ public class AdminController {
         info.setArtime(formatTime.parse(flightForm.getArtime()));
         info.setDate(formatDate.parse(flightForm.getDate()));
         info.setTime(formatTime.parse(flightForm.getTime()));
+        info.setPlane(planeService.getPlaneByName(flightForm.getPlane()));
         Long id1 = airportService.getAirportByName(flightForm.getRoute().replace(" ","").split(":")[0]).getId();
         Long id2 = airportService.getAirportByName(flightForm.getRoute().replace(" ","").split(":")[1]).getId();
         info.setRoute(routeService.getRoute(id1, id2));
-        flightService.updateFlight(info);
-        response.sendRedirect("/admin");
-        return "admin/mainadmin";
+        return info;
     }
 }

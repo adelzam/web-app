@@ -55,8 +55,9 @@
                                     <td>${ticket.flight.ardate}</td>
                                     <td>${ticket.flight_class.type}</td>
                                     <td>
-                                       <a href="/admintest/delete/ticket/${ticket.id}"><button class="button">Удалить</button>
-                                       </a></td>
+                                        <a href="/admin/delete/ticket/${ticket.id}">
+                                            <button class="button">Удалить</button>
+                                        </a></td>
                                 </tr>
                             </#list>
                         </#if>
@@ -92,15 +93,21 @@
                                     <td>${flight.plane.type}</td>
                                     <td>${flight.plane.name}</td>
                                     <td>
-                                         <a href="/admin/update/flight/${flight.id}"> <button class="button">Изменить</button></a>
+                                        <a href="/admin/update/flight/${flight.id}">
+                                            <button class="button">Изменить</button>
+                                        </a>
                                     </td>
                                     <td>
-                                        <a href="/admintest/delete/flight/${flight.id}"><button class="button">Удалить</button>
+                                        <a href="/admin/delete/flight/${flight.id}">
+                                            <button class="button">Удалить</button>
                                         </a></td>
                                 </tr>
                             </#list>
                         </#if>
                     </table>
+                    <a href="/admin/add/flight">
+                        <button class="button">Создать новый</button>
+                    </a>
                     <#if !tickets??>Информации не найдено</#if>
                 </div>
                 <div class="tab-pane fade" id="service-three">
@@ -123,10 +130,13 @@
                                     <td>${passenger.passport}</td>
                                     <td>${passenger.birth?date}</td>
                                     <td>
-                                        <a href="/admin/update/passenger/${passenger.id}"> <button class="button">Изменить</button></a>
+                                        <a href="/admin/update/passenger/${passenger.id}">
+                                            <button class="button">Изменить</button>
+                                        </a>
                                     </td>
                                     <td>
-                                        <a href="/admin/delete/passenger/${passenger.id}"><button class="button">Удалить</button>
+                                        <a href="/admin/delete/passenger/${passenger.id}">
+                                            <button class="button">Удалить</button>
                                         </a></td>
                                 </tr>
                             </#list>

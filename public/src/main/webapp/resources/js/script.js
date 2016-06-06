@@ -37,7 +37,7 @@ $(document).ready(function () {
     });
 });
 
-function showflight(val1, val2, val3, val4, val5, val6, val7, val8) {
+function showflight(val1, val2, val3, val4, val5, val6, val7, val8, val9) {
     var div1 = document.getElementById("show").style.display;
     if (div1 == "none") {
         div1 = "block";
@@ -59,4 +59,5 @@ function showflight(val1, val2, val3, val4, val5, val6, val7, val8) {
     document.getElementById("assemblies").innerHTML = a;
     document.getElementById("total").innerHTML = t.toFixed();
     document.getElementById("show").style.display = div1;
+    $('#addhref').attr('href','/personal/'+val9);
 }

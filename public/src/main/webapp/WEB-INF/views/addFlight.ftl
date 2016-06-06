@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="id" type="java.lang.Long" -->
+
 <#-- @ftlvariable name="routes" type="java.util.List<com.springapp.mvc.common.RouteInfo>" -->
 <#-- @ftlvariable name="planes" type="java.util.List<com.springapp.mvc.common.PlaneInfo>" -->
 <#assign form=JspTaglibs["http://www.springframework.org/tags/form"]>
@@ -11,7 +11,7 @@
     <h2>Редактирование информации о рейсе</h2>
     <br><br>
     <div class="form-group">
-        <@form.form commandName="updateFForm" action="/admin/update/flight/${id}" acceptCharset="UTF-8" method="post">
+        <@form.form commandName="updateFForm" action="/admin/add/flight" acceptCharset="UTF-8" method="post">
             <table class="table">
                 <tr>
                     <td>

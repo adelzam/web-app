@@ -28,7 +28,7 @@ public class TicketInfo {
     private FlightClassInfo flight_class;
 
     @Column(name = "check_in")
-    private Boolean check_in;
+    private Boolean check_in = false;
 
     @Column(name="seat")
     private String seat;

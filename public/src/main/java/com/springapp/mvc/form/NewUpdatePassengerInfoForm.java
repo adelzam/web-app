@@ -30,7 +30,7 @@ public class NewUpdatePassengerInfoForm {
 
     @NotEmpty(message = "Поле обязательно для заполнения")
     @Pattern(regexp = "[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])",
-            message = "Неверный формат номера документа")
+            message = "Неверный формат даты рождения")
     private String birth;
 
     public NewUpdatePassengerInfoForm() {

@@ -92,7 +92,7 @@
                                                onchange="showflight('${item.route.departure.city}, ${item.route.departure.name}',
                                                        '${item.route.arrival.city}, ${item.route.arrival.name}',
                                                        '${item.date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.time}&nbsp;&nbsp;${item.route.departure.name}&nbsp;&#8594;&nbsp;${item.route.arrival.name}&nbsp;&nbsp;${item.artime}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TJ${item.number}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${class[prise_index]}',
-                                                       ${item.route.departure.taxes}, ${item.route.arrival.taxes}, ${item.route.cost}, ${num}, '${classindex.cost}' )"
+                                                       ${item.route.departure.taxes}, ${item.route.arrival.taxes}, ${item.route.cost}, ${num}, '${classindex.cost}','${item.id}:${prise_index}' )"
                                                name="choice" value="${item.id}:${prise_index}"/>&nbsp;<label
                                             for="${item.id}:${prise_index}">${prise}
                                     </label>
@@ -147,7 +147,7 @@
                         <td><h2 style="font-weight: 200" id="total"></h2></td>
                     </tr>
                 </table>
-                <button onclick="/personal" style="color: white; background-color: red; width: 270px; height: 50px; font-size: 30px; font-weight: 200">Продолжить</button>
+                <a id="addhref"><button style="color: white; background-color: red; width: 270px; height: 50px; font-size: 30px; font-weight: 200">Продолжить</button></a>
             </div>
         </div>
     </#if>

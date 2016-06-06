@@ -67,7 +67,7 @@
                 </datalist>
             </div>
             <div>
-                <input type="date" name="date" value="2016-06-02" min="2016-06-02"
+                <input type="date" name="date" value="2016-06-06" min="2016-06-06"
                        style="width: 268px; height: 48px; font-size: 25px; float: left; margin-top: 40px; margin-left: 5px">
             </div>
             <div>

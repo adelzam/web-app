@@ -58,8 +58,13 @@ public class FlightService {
     }
 
     @Transactional
+    public FlightClassInfo getFlightClassById(Long id) {
+        return flightClassRepository.findOne(id);
+    }
+
+    @Transactional
     public List<FlightInfo> getFlights() {
-        return flightRepository.findAllByOrderByDate();
+        return flightRepository.findAllByOrderByNumber();
     }
 
     @Transactional
