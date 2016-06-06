@@ -59,7 +59,7 @@ public class FlightService {
 
     @Transactional
     public List<FlightInfo> getFlights() {
-        return flightRepository.findAll();
+        return flightRepository.findAllByOrderByDate();
     }
 
     @Transactional
@@ -83,5 +83,9 @@ public class FlightService {
     @Transactional
     public void deleteFlight(Long id) {
         flightRepository.delete(id);
+    }
+
+    public void updateFlight(FlightInfo info) {
+        flightRepository.save(info);
     }
 }

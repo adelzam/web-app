@@ -32,4 +32,9 @@ public class PassengersService {
     public void deletePassengers(Long id) {
         passengersRepository.delete(id);
     }
+
+    @Transactional
+    public void updatePassengers(PassengersInfo passengersInfo) {
+        passengersRepository.save(passengersInfo);
+    }
 }

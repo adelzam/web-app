@@ -4,14 +4,15 @@ import com.springapp.mvc.common.FlightInfo;
 import com.springapp.mvc.common.PassengersInfo;
 import com.springapp.mvc.common.TicketInfo;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.springapp.mvc.form.NewCheckInSearchForm;
+import com.springapp.mvc.form.NewUpdateFlightForm;
 import com.springapp.mvc.form.NewUpdatePassengerInfoForm;
-import com.springapp.mvc.services.BookService;
-import com.springapp.mvc.services.FlightService;
-import com.springapp.mvc.services.PassengersService;
-import com.springapp.mvc.services.TicketService;
+import com.springapp.mvc.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Controller
@@ -38,7 +40,13 @@ public class AdminController {
     private PassengersService passengersService;
 
     @Autowired
+    private AirportService airportService;
+
+    @Autowired
     private BookService bookService;
+
+    @Autowired
+    private RouteService routeService;
 
     @Autowired
     private HttpServletRequest request;
@@ -48,7 +56,6 @@ public class AdminController {
         List<TicketInfo> tickets = ticketService.getTickets();
         List<FlightInfo> flights = flightService.getFlights();
         List<PassengersInfo> passengers = passengersService.getPassengers();
-        System.out.println(bookService.generateBook());
         model.addAttribute("tickets", tickets);
         model.addAttribute("flights", flights);
         model.addAttribute("passengers", passengers);
@@ -99,7 +106,7 @@ public class AdminController {
         PassengersInfo passengersInfo = passengersService.getPassenger(id);
         form.setLastName(passengersInfo.getLastName());
         form.setFirstName(passengersInfo.getFirstName());
-        form.setBirth(passengersInfo.getBirth());
+        form.setBirth(passengersInfo.getBirth().toString());
         form.setPassport(passengersInfo.getPassport());
         request.setAttribute(ATTR_UPDATEPASSNEGERS_FORM,form);
         model.addAttribute("id", id);
@@ -107,11 +114,61 @@ public class AdminController {
     }
 
     @RequestMapping(value = "update/passenger/{id}", method = RequestMethod.POST)
-    public String printUpdateRes(@Valid @ModelAttribute(ATTR_UPDATEPASSNEGERS_FORM) NewUpdatePassengerInfoForm updatePassengerInfoForm,
-                                 BindingResult bindingResult, ModelMap model){
+    public String printUpdateRes(@PathVariable("id") Long id, @Valid @ModelAttribute(ATTR_UPDATEPASSNEGERS_FORM) NewUpdatePassengerInfoForm updatePassengerInfoForm,
+                                 BindingResult bindingResult, ModelMap model, HttpServletResponse response) throws IOException, ParseException {
         if (bindingResult.hasErrors()) {
             return "updatePassenger";
         }
+        PassengersInfo passengersInfo = passengersService.getPassenger(id);
+        passengersInfo.setLastName(updatePassengerInfoForm.getLastName());
+        passengersInfo.setFirstName(updatePassengerInfoForm.getFirstName());
+        passengersInfo.setPassport(updatePassengerInfoForm.getPassport());
+        SimpleDateFormat format = new SimpleDateFormat();
+        format.applyPattern("yyyy-MM-dd");
+        passengersInfo.setBirth(format.parse(updatePassengerInfoForm.getBirth()));
+        passengersService.updatePassengers(passengersInfo);
+        response.sendRedirect("/admin");
+        return "admin/mainadmin";
+    }
+    private static final String ATTR_UPDATEFLIGHT_FORM = "updateFForm";
+
+    @RequestMapping(value = "update/flight/{id}", method = RequestMethod.GET)
+    public String printUpdateFlightForm(ModelMap model, @PathVariable("id") Long id) throws ParseException {
+        NewUpdateFlightForm form = new NewUpdateFlightForm();
+        FlightInfo flightInfo = flightService.getFlightById(id);
+        model.addAttribute("routes", routeService.getRoutes());
+        form.setNumber(flightInfo.getNumber().toString());
+        form.setRoute(flightInfo.getRoute().getDeparture().getName()+" : "+flightInfo.getRoute().getArrival().getName());
+        form.setArdate(flightInfo.getArdate().toString());
+        form.setArtime(flightInfo.getArtime().toString());
+        form.setDate(flightInfo.getDate().toString());
+        form.setTime(flightInfo.getTime().toString());
+        request.setAttribute(ATTR_UPDATEFLIGHT_FORM,form);
+        model.addAttribute("id", id);
+        return "updateFlight";
+    }
+
+    @RequestMapping(value = "update/flight/{id}", method = RequestMethod.POST)
+    public String printFlightRes(@PathVariable("id") Long id, @Valid @ModelAttribute(ATTR_UPDATEFLIGHT_FORM) NewUpdateFlightForm flightForm,
+                                 BindingResult bindingResult, ModelMap model, HttpServletResponse response) throws IOException, ParseException {
+        if (bindingResult.hasErrors()) {
+            return "updateFlight";
+        }
+        FlightInfo info = flightService.getFlightById(id);
+        SimpleDateFormat formatDate = new SimpleDateFormat();
+        formatDate.applyPattern("yyyy-MM-dd");
+        SimpleDateFormat formatTime = new SimpleDateFormat();
+        formatTime.applyPattern("HH:mm:ss");
+        info.setNumber(Long.valueOf(flightForm.getNumber()));
+        info.setArdate(formatDate.parse(flightForm.getArdate()));
+        info.setArtime(formatTime.parse(flightForm.getArtime()));
+        info.setDate(formatDate.parse(flightForm.getDate()));
+        info.setTime(formatTime.parse(flightForm.getTime()));
+        Long id1 = airportService.getAirportByName(flightForm.getRoute().replace(" ","").split(":")[0]).getId();
+        Long id2 = airportService.getAirportByName(flightForm.getRoute().replace(" ","").split(":")[1]).getId();
+        info.setRoute(routeService.getRoute(id1, id2));
+        flightService.updateFlight(info);
+        response.sendRedirect("/admin");
         return "admin/mainadmin";
     }
 }

@@ -39,7 +39,6 @@
                             <th>Дата прилета</th>
                             <th>Класс обслуживания</th>
                             <th></th>
-                            <th></th>
                         </tr>
                         <#if tickets??>
                             <#list tickets as ticket>
@@ -55,9 +54,6 @@
                                     <td>${ticket.flight.artime}</td>
                                     <td>${ticket.flight.ardate}</td>
                                     <td>${ticket.flight_class.type}</td>
-                                    <td>
-                                        <button class="button">Изменить</button>
-                                    </td>
                                     <td>
                                        <a href="/admintest/delete/ticket/${ticket.id}"><button class="button">Удалить</button>
                                        </a></td>
@@ -96,7 +92,7 @@
                                     <td>${flight.plane.type}</td>
                                     <td>${flight.plane.name}</td>
                                     <td>
-                                        <button class="button">Изменить</button>
+                                         <a href="/admin/update/flight/${flight.id}"> <button class="button">Изменить</button></a>
                                     </td>
                                     <td>
                                         <a href="/admintest/delete/flight/${flight.id}"><button class="button">Удалить</button>

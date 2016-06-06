@@ -12,4 +12,6 @@ import java.util.List;
  */
 public interface FlightRepository extends JpaRepository<FlightInfo, Long>{
     List<FlightInfo> getFlightInfoByRouteAndDate(RouteInfo routeInfo, Date date);
+
+    List<FlightInfo> findAllByOrderByDate();
 }

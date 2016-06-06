@@ -1,6 +1,8 @@
 package com.springapp.mvc.common;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -127,7 +129,7 @@ public class FlightInfo {
         this.ardate = ardate;
     }
 
-    public Date getArtime() {
+    public Date getArtime() throws ParseException {
         return artime;
     }
 

@@ -33,4 +33,9 @@ public class AirportService {
     public List<AirportInfo> getAirports() {
         return airportRepository.findAll();
     }
+
+    @Transactional
+    public AirportInfo getAirportByName(String name) {
+        return airportRepository.getAirportInfoByName(name);
+    }
 }

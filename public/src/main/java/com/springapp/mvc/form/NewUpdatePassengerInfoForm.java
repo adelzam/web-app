@@ -3,6 +3,8 @@ package com.springapp.mvc.form;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 
@@ -29,12 +31,12 @@ public class NewUpdatePassengerInfoForm {
     @NotEmpty(message = "Поле обязательно для заполнения")
     @Pattern(regexp = "[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])",
             message = "Неверный формат номера документа")
-    private Date birth;
+    private String birth;
 
     public NewUpdatePassengerInfoForm() {
     }
 
-    public NewUpdatePassengerInfoForm(String firstName, String lastName, String passport, Date birth) {
+    public NewUpdatePassengerInfoForm(String firstName, String lastName, String passport, String birth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.passport = passport;
@@ -65,11 +67,11 @@ public class NewUpdatePassengerInfoForm {
         this.passport = passport;
     }
 
-    public Date getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 }

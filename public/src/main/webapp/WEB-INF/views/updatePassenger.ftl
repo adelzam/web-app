@@ -9,7 +9,7 @@
     <h2>Редактирование информации о пассажире</h2>
     <br><br>
     <div class="form-group">
-        <@form.form commandName="updatePForm" action="admin/update/passenger/${id}" acceptCharset="UTF-8" method="post">
+        <@form.form commandName="updatePForm" action="/admin/update/passenger/${id}" acceptCharset="UTF-8" method="post">
             <table class="table">
                 <tr>
                     <td>
