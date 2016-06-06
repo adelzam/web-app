@@ -1,4 +1,4 @@
-<#-- @ftlvariable name="ticket" type="com.springapp.mvc.common.TicketInfo" -->
+<#-- @ftlvariable name="tickets" type="com.springapp.mvc.common.TicketInfo" -->
 <#-- @ftlvariable name="checkIn" type="java.lang.String" -->
 <html>
 <head>

@@ -79,4 +79,10 @@ public class TicketService {
     public List<TicketInfo> getTicketInfoByFlight(Long flight_id) {
         return ticketRepository.getTicketInfoByFlightId(flight_id);
     }
+
+    @Transactional
+    public Long generateNum() {
+        long num = ticketRepository.findTop1ByOrderByIdDesc().getNum() + 1;
+        return num;
+    }
 }

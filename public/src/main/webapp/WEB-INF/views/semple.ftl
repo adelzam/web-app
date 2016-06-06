@@ -13,6 +13,8 @@
     <!-- Bootstrap Core CSS -->
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
 
+    <link href="/resources/css/style.css" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="/resources/css/modern-business.css" rel="stylesheet">
 

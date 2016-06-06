@@ -20,6 +20,7 @@ public class PassengersInfo {
     private String passport;
 
     @Column(name = "birth")
+    @Temporal(TemporalType.DATE)
     private Date birth;
 
     public PassengersInfo() {

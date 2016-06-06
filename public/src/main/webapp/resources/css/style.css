@@ -1,0 +1,10 @@
+.update_input_form {
+    width: 500px;
+    height: 43px;
+    font-size: 25px;
+}
+.form_error {
+    font-size: 18px;
+    letter-spacing: normal;
+    color: red;
+}

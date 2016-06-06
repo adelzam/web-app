@@ -24,6 +24,11 @@ public class PassengersService {
     }
 
     @Transactional
+    public PassengersInfo getPassenger(Long id){
+        return passengersRepository.findOne(id);
+    }
+
+    @Transactional
     public void deletePassengers(Long id) {
         passengersRepository.delete(id);
     }

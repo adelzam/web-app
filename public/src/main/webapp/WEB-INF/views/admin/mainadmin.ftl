@@ -1,7 +1,7 @@
 <#-- @ftlvariable name="flights" type="java.util.List<com.springapp.mvc.common.FlightInfo>" -->
 <#-- @ftlvariable name="tickets" type="java.util.List<com.springapp.mvc.common.TicketInfo>" -->
 <#-- @ftlvariable name="passengers" type="java.util.List<com.springapp.mvc.common.PassengersInfo>" -->
-<#include "template.ftl">
+<#include "../template.ftl">
 <@mainTemplate title="Airline tickets  | Admin" />
 <#macro m_body>
 
@@ -127,10 +127,10 @@
                                     <td>${passenger.passport}</td>
                                     <td>${passenger.birth?date}</td>
                                     <td>
-                                        <button class="button">Изменить</button>
+                                        <a href="/admin/update/passenger/${passenger.id}"> <button class="button">Изменить</button></a>
                                     </td>
                                     <td>
-                                        <a href="/admintest/delete/passenger/${passenger.id}"><button class="button">Удалить</button>
+                                        <a href="/admin/delete/passenger/${passenger.id}"><button class="button">Удалить</button>
                                         </a></td>
                                 </tr>
                             </#list>
@@ -143,7 +143,7 @@
         </div>
     </div>
 
-    <#include "components/footer.ftl" />
+    <#include "../components/footer.ftl" />
 
 </div>
 

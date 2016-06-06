@@ -13,6 +13,8 @@
 
     <link href="/resources/css/ticket.css" rel="stylesheet">
 
+    <link href="/resources/css/style.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 </head>
