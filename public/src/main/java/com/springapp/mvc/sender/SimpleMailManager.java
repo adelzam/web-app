@@ -6,9 +6,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-/**
- * Created by Ann on 02.06.2016.
- */
 public class SimpleMailManager {
     private final String COMPANY_GMAIL = "airline.tickets.course.su@gmail.com";
     private final String COMPANY_PASSWORD = "1.airline.tickets.2";

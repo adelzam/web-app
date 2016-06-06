@@ -28,24 +28,24 @@
                     <a href="/contacts">Контакты</a>
                 </li>
 
-            <#--<@sec.authorize ifAnyGranted="ROLE_ANONYMOUS">-->
-                <#--<li>-->
-                    <#--<a class="login" href="/login">Login</a>-->
-                <#--</li>-->
-                <#--<li>-->
-                    <#--<a class="login" href="/reg">Registration</a>-->
-                <#--</li>-->
-            <#--</@sec.authorize>-->
-            <#--&lt;#&ndash; Если уже авторизован, то ссылки в личный кабинет и на выход &ndash;&gt;-->
-            <#--<@sec.authorize access="isAuthenticated()">-->
-                <#--<li>-->
-                    <#--<a class="login" href="/cabinet" style="text-transform: lowercase; color: yellow;">-->
-                        <#--<@sec.authentication property="principal.username" />-->
-                    <#--</a></li>-->
-                <#--<li>-->
-                    <#--<a class="login" href="/logout" style="color: yellow;">Logout</a>-->
-                <#--</li>-->
-            <#--</@sec.authorize>-->
+            <@sec.authorize ifAnyGranted="ROLE_ANONYMOUS">
+                <li>
+                    <a class="login" href="/login" style="color: #337ab7;">Login</a>
+                </li>
+                <li>
+                    <a class="login" href="/reg" style="color: #337ab7;">Registration</a>
+                </li>
+            </@sec.authorize>
+            <#-- Если уже авторизован, то ссылки в личный кабинет и на выход -->
+            <@sec.authorize access="isAuthenticated()">
+                <li>
+                    <a class="login" href="/cabinet" style="text-transform: lowercase; color: #337ab7;">
+                        <@sec.authentication property="principal.username" />
+                    </a></li>
+                <li>
+                    <a class="login" href="/logout" style="color:  #337ab7;">Logout</a>
+                </li>
+            </@sec.authorize>
 
             </ul>
         </div>

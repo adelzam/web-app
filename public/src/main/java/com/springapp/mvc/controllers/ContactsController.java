@@ -47,7 +47,7 @@ public class ContactsController {
             SimpleMailManager sender = new SimpleMailManager(rfb.getEmail());
             sender.sendQ(rfb.toString());
         }catch (RuntimeException e) {
-            throw e;
+            e.printStackTrace();
         }
         return "components/contactFormSu";
     }

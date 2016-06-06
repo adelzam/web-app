@@ -10,7 +10,7 @@
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- Определяем папку, в которой будем искать DAO компоненты (@Repository) -->
-    <!--<context:component-scan base-package="com.springapp.mvc.repositories.hibernate" />-->
+    <context:component-scan base-package="com.springapp.mvc.repository" />
 
     <!-- Настраивает управление транзакциями с помощью аннотации @Transactional -->
     <tx:annotation-driven transaction-manager="hibernateTransactionManager" />

@@ -1,7 +1,5 @@
 package com.springapp.mvc.common;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,12 +16,31 @@ public class BookInfo {
     @OneToMany(mappedBy = "book")
     private List<TicketInfo> ticket;
 
+    @ManyToOne(cascade = {CascadeType.PERSIST},
+            fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private UserInfo user;
+
     public BookInfo() {
     }
 
     public BookInfo(String name, List<TicketInfo> ticket) {
         this.name = name;
         this.ticket = ticket;
+    }
+
+    public BookInfo(String name, List<TicketInfo> ticket, UserInfo user) {
+        this.name = name;
+        this.ticket = ticket;
+        this.user = user;
+    }
+
+    public UserInfo getUser() {
+        return user;
+    }
+
+    public void setUser(UserInfo user) {
+        this.user = user;
     }
 
     public Long getId() {
