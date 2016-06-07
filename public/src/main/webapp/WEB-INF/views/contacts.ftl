@@ -19,7 +19,7 @@
 
     <!-- Contact Details Column -->
     <div class="col-md-4">
-        <h3>Контактная информация</h3>
+        <h3 style="padding: 18px 0px;">Контактная информация</h3>
         <p>
             3481 Melrose Place<br>Beverly Hills, CA 90210<br>
         </p>
@@ -40,11 +40,11 @@
     <@form.form commandName="contactForm" action="/contacts" acceptCharset="UTF-8" method="post">
     <div class="row">
         <div class="col-md-8">
-            <h3>Отправьте нам сообщение</h3>
+            <h3 style="padding: 18px 0px;">Отправьте нам сообщение</h3>
             <form name="sentMessage" id="contactForm" novalidate>
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label>Полное имя :</label>
+                        <span>Полное имя :</span>
                         <@form.input path="fio" />
                         <@form.errors path="fio" cssStyle="color: red;" />
                         <#--<input type="text" class="form-control" id="name" required-->
@@ -54,7 +54,7 @@
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label>Номер телефона :</label>
+                        <span>Номер телефона :</span>
                         <@form.input path="phone" />
                         <@form.errors path="phone" cssStyle="color: red;" />
                         <#--<input type="tel" class="form-control" id="phone" required-->
@@ -63,7 +63,7 @@
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label>Email Address :</label>
+                        <span>Email Address :</span>
                         <@form.input path="email" />
                         <@form.errors path="email" cssStyle="color: red;" />
                         <#--<input type="email" class="form-control" id="email" required-->
@@ -72,7 +72,7 @@
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label>Сообщение :</label>
+                        <span>Сообщение :</span>
                         <@form.textarea path="message" rows="10" cols="100" />
                         <@form.errors path="message" cssStyle="color: red;" />
 

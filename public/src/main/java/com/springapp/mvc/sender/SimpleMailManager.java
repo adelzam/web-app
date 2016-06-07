@@ -44,14 +44,16 @@ public class SimpleMailManager {
         }
     }
 
-    public void sendC() {
+    public void sendC(String password) {
         try {
             Message message = new MimeMessage(getSession());
             message.setFrom(new InternetAddress(COMPANY_GMAIL));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user_name));
-            message.setSubject("Подтверждение регистрации");
+            message.setSubject("Подтверждение регистрации Airline tickets");
             message.setText("Вы прошли успешную регистрацию на сайте Airline tickets\n" +
-                    "Ваш логин : " + user_name);
+                    "Ваш логин : " + user_name+"\n"+
+                    "Ваш пароль: " + password+"\n"+
+                    "Сохраните это письмо! Пока возможности восстановления пароля на сайте нет, но мы будем развиваться!");
 
             Transport.send(message);
         } catch (MessagingException e) {

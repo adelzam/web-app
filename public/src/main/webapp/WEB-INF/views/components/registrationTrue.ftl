@@ -2,12 +2,13 @@
 <@mainTemplate title="Airline tickets | Success" />
 <#macro m_body>
 
-<div class="404-page">
-    <div class="container">
-        <div class="error-head">
-            <h2 style="padding-bottom: 5%; font-size: 3em;">Регистрация прошла успешно!</h2>
-            <a href="/">Go Back</a>
-        </div>
+<div class="container">
+
+    <div class="error-head">
+        <h2 style="padding-bottom: 30px; padding-top: 50px;">Регистрация прошла успешно!</h2>
+        <a href="/">Go Back</a>
     </div>
+
+
 </div>
 </#macro>

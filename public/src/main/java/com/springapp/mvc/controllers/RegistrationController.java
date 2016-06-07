@@ -2,6 +2,7 @@ package com.springapp.mvc.controllers;
 
 import com.springapp.mvc.common.UserInfo;
 import com.springapp.mvc.forms.RegistrationFormBean;
+import com.springapp.mvc.sender.SimpleMailManager;
 import com.springapp.mvc.services.UserService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,8 +52,14 @@ public class RegistrationController {
         }
         String login = rfb.getEmail();
         if(userService.getUserByLogin(login) == null){
-            userService.add(new UserInfo(rfb.getEmail(),  DigestUtils.md5Hex(rfb.getPassword()), rfb.getFio(), "ROLE_USER", rfb.getPhone()));
+            userService.add(new UserInfo(login,  DigestUtils.md5Hex(rfb.getPassword()), rfb.getFio(), "ROLE_USER", rfb.getPhone()));
             System.out.println(DigestUtils.md5Hex(rfb.getPassword()));
+            try {
+                SimpleMailManager sender = new SimpleMailManager(login);
+                sender.sendC(rfb.getPassword());
+            }catch (RuntimeException e) {
+                e.printStackTrace();
+            }
             return "components/registrationTrue";
         }else return "components/registrationFalse";
     }
