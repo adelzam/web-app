@@ -30,14 +30,15 @@ public class TicketService {
     public List<TicketInfo> getTicketsByBookAndPassenger(String book, String lastName) {
         List<PassengersInfo> passengers = passengersService.getPassengersByLastName(lastName);
         List<TicketInfo> tickets = null;
+        BookInfo bookres = null;
         if (passengers != null) {
             for (PassengersInfo passenger : passengers) {
-                if ((tickets = ticketRepository.getTicketInfoByBookIdAndPassengerIdOrderById(
-                        bookService.getBookByName(book).getId(),
-                        passenger.getId())) != null) {
-                    flightService.updateCheckInInfo();
-                    return tickets;
-                }
+                if ((bookres = bookService.getBookByName(book) )!=null)
+                    if ((tickets = ticketRepository.getTicketInfoByBookIdAndPassengerIdOrderById(
+                            bookres.getId(), passenger.getId())) != null) {
+                        flightService.updateCheckInInfo();
+                        return tickets;
+                    }
             }
         }
         return null;
@@ -65,7 +66,26 @@ public class TicketService {
     }
 
     @Transactional
+    public List<TicketInfo> getTickets() {
+        return ticketRepository.findAll();
+    }
+
+    @Transactional
+    public void addTicket(TicketInfo ticketInfo) {ticketRepository.save(ticketInfo);}
+
+    @Transactional
+    public void deleteTicket(Long id) {
+        ticketRepository.delete(id);
+    }
+
+    @Transactional
     public List<TicketInfo> getTicketInfoByFlight(Long flight_id) {
         return ticketRepository.getTicketInfoByFlightId(flight_id);
+    }
+
+    @Transactional
+    public Long generateNum() {
+        long num = ticketRepository.findTop1ByOrderByIdDesc().getNum() + 1;
+        return num;
     }
 }

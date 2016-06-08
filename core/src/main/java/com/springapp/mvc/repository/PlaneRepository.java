@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlaneRepository extends JpaRepository<PlaneInfo, Long> {
 
+    PlaneInfo getPlaneByName(String name);
 }

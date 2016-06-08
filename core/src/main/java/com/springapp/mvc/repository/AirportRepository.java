@@ -11,5 +11,5 @@ import java.util.List;
 public interface AirportRepository extends JpaRepository<AirportInfo, Long> {
     AirportInfo getAirportInfoByName(String name);
 
-    AirportInfo getAirportInfoByCity(String city);
+    List<AirportInfo> getAirportInfoByCity(String city);
 }

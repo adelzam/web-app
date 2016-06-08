@@ -10,4 +10,6 @@ public interface TicketRepository extends JpaRepository<TicketInfo, Long> {
     List<TicketInfo> getTicketInfoByBookIdAndPassengerIdOrderById(Long book_id, Long passenger_id);
 
     List<TicketInfo> getTicketInfoByFlightId(Long flight_id);
+
+    TicketInfo findTop1ByOrderByIdDesc();
 }

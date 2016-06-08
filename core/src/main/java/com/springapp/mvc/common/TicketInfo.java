@@ -1,7 +1,5 @@
 package com.springapp.mvc.common;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity
@@ -28,10 +26,13 @@ public class TicketInfo {
     private FlightClassInfo flight_class;
 
     @Column(name = "check_in")
-    private Boolean check_in;
+    private Boolean check_in = false;
 
     @Column(name="seat")
     private String seat;
+
+    @Column(name = "num")
+    private Long num;
 
     public TicketInfo() {
     }
@@ -90,5 +91,13 @@ public class TicketInfo {
 
     public void setFlight_class(FlightClassInfo flight_class) {
         this.flight_class = flight_class;
+    }
+
+    public Long getNum() {
+        return num;
+    }
+
+    public void setNum(Long num) {
+        this.num = num;
     }
 }

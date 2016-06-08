@@ -48,7 +48,7 @@
        <!-- Настройки Entity Manager для JPA -->
        <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
              p:dataSource-ref="dataSource"
-             p:packagesToScan="com.springapp.mvc.common"
+             p:packagesToScan="com.springapp.mvc"
              p:persistenceProvider-ref="hibernatePersistenceProvider"
              p:jpaVendorAdapter-ref="hibernateJpaVendorAdapter">
               <property name="jpaProperties">

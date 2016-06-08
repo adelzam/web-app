@@ -10,4 +10,6 @@ import java.util.List;
  */
 public interface PassengersRepository extends JpaRepository<PassengersInfo, Long> {
     List<PassengersInfo> getPassengersInfoByLastName(String lastName);
+
+    PassengersInfo getPassengersInfoByPassport(String passport);
 }

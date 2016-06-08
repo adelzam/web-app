@@ -1,4 +1,4 @@
-package com.springapp.mvc.forms;
+package com.springapp.mvc.form;
 
 
 import org.hibernate.validator.constraints.NotEmpty;

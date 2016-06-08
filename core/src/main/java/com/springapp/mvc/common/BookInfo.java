@@ -21,9 +21,6 @@ public class BookInfo {
     @JoinColumn(name = "user_id")
     private UserInfo user;
 
-    public BookInfo() {
-    }
-
     public BookInfo(String name, List<TicketInfo> ticket) {
         this.name = name;
         this.ticket = ticket;
@@ -35,12 +32,11 @@ public class BookInfo {
         this.user = user;
     }
 
-    public UserInfo getUser() {
-        return user;
+    public BookInfo() {
     }
 
-    public void setUser(UserInfo user) {
-        this.user = user;
+    public BookInfo(String name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -65,5 +61,13 @@ public class BookInfo {
 
     public void setTicket(List<TicketInfo> ticket) {
         this.ticket = ticket;
+    }
+
+    public UserInfo getUser() {
+        return user;
+    }
+
+    public void setUser(UserInfo user) {
+        this.user = user;
     }
 }

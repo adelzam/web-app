@@ -1,7 +1,7 @@
 package com.springapp.mvc.controllers;
 
 import com.springapp.mvc.common.UserInfo;
-import com.springapp.mvc.forms.RegistrationFormBean;
+import com.springapp.mvc.form.RegistrationFormBean;
 import com.springapp.mvc.sender.SimpleMailManager;
 import com.springapp.mvc.services.UserService;
 import org.apache.commons.codec.digest.DigestUtils;

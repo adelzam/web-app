@@ -1,8 +1,9 @@
-package com.springapp.mvc.controllers;
+package com.springapp.mvc.form;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Pattern;
+
 public class NewCheckInSearchForm {
     @NotEmpty(message = "Поле обязательно для заполнения")
     @Pattern(regexp = "[A-Za-z0-9]+",

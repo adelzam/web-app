@@ -3,7 +3,7 @@
 <#-- @ftlvariable name="class" type="java.lang.String" -->
 <#-- @ftlvariable name="num" type="java.lang.Integer" -->
 
-<#include "template.ftl">
+<#include "../template.ftl">
 <@mainTemplate title="Airline tickets  | Check in" />
 <#macro m_body>
 <div class="container">
@@ -14,6 +14,7 @@
     </#if>
     <#if flight??>
         <h2>Регистрация на рейс TJ<label style="color: red">${flight.number}</label></h2>
+    <h2>Борт: <label style="color: red">${flight.plane.type}</label></h2>
         <h2>Дата вылета:<label style="color: red"> ${flight.date}</label></h2>
         <h2>Время вылета:<label style="color: red">${flight.time}</label></h2>
         <#if class="business">
@@ -23,7 +24,7 @@
             <#include "checkinplaneeconomy.ftl"/>
         </#if>
     </#if>
-    <#include "components/footer.ftl" />
+    <#include "../components/footer.ftl" />
 </div>
 
 </#macro>

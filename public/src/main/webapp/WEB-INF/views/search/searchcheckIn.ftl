@@ -1,6 +1,6 @@
 <#-- @ftlvariable name="tickets" type="java.util.List<com.springapp.mvc.common.TicketInfo>" -->
 <#-- @ftlvariable name="book" type="java.lang.String" -->
-<#include "template.ftl">
+<#include "../template.ftl">
 <@mainTemplate title="Airline tickets  | Cabinet" />
 <#macro m_body>
 
@@ -22,6 +22,7 @@
                 <th>Время</th>
                 <th>Класс</th>
                 <th>Регистрация на рейc</th>
+                <th>Билет</th>
             </tr>
             <#list tickets as ticket>
                 <tr>
@@ -31,7 +32,7 @@
                     <td>${ticket.flight.time}</td>
                     <td>${ticket.flight_class.type}</td>
                     <td><#if ticket.check_in==true>
-                        <button href="#" style="background-color: red; color: white">Посадочный талон</button>
+                        <a href="/boardingpass/${ticket.id}" target="_blank"> <button style="background-color: red; color: white">Посадочный талон</button></a>
                     <#elseif true==ticket.flight.checkInOpen>
                         <a href="/checkin/${ticket.id}">
                             <button style="background-color: red; color: white">
@@ -42,11 +43,18 @@
                         <div style="background-color: lightgray; color: black">Регистрация недоступна</div>
                     </#if>
                     </td>
+                    <td>
+                        <a href="/ticket/${ticket.id}" target="_blank" >
+                            <button style="background-color: red; color: white">
+                                Билет
+                            </button>
+                        </a>
+                    </td>
                 </tr>
             </#list>
         </table>
     </#if>
-    <#include "components/footer.ftl" />
+    <#include "../components/footer.ftl" />
 </div>
 
 </#macro>
