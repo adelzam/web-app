@@ -4,8 +4,22 @@
 <#macro m_body>
 
 <div class="container">
-    <h2 data-qa="title_searchPage">Онлайн-регистрация на рейс</h2>
-    <p data-qa="details_searchPage">Начинается за <b>30 часов</b> и <b>заканчивается за 50 минут</b> до вылета</p>
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Онлайн-регистрация на рейс <br>
+                <small>Начинается <b>за 30 часов</b> и <b>заканчивается за 50 минут</b> до вылета</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a>
+                </li>
+                <li><a href="/services">Services</a>
+                </li>
+                <li class="active">Online check</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
     <div class="login-box" data-qa="login_block">
         <div class="column">
             <@form.form commandName="checkInForm" action="/webcheckin" acceptCharset="UTF-8" method="post">

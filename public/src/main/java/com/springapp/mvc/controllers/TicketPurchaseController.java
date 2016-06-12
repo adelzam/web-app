@@ -24,7 +24,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 @Controller
 @RequestMapping("/personal")
@@ -48,7 +47,7 @@ public class TicketPurchaseController {
     private FlightService flightService;
 
     @Autowired
-    private  HttpSession session;
+    private HttpSession session;
 
 
     /**
@@ -72,26 +71,33 @@ public class TicketPurchaseController {
         if (bindingResult.hasErrors()) {
             return "personal";
         }
+//        Создали билет, создали бронирование, добавили бронирование к билету
         TicketInfo ticketInfo = new TicketInfo();
-        BookInfo bookInfo = new BookInfo(bookService.generateBook());
+        BookInfo bookInfo = new BookInfo(bookService.generateBook(), rfb.getEmail());
         ticketInfo.setBook(bookInfo);
         bookService.saveBook(bookInfo);
         ticketInfo.setNum(ticketService.generateNum());
-
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd");
-        DateTime dt = fmt.parseDateTime(rfb.getBdate());
-
-        PassengersInfo passengersInfo = new PassengersInfo(rfb.getFirstname(), rfb.getLastname(), rfb.getNumdoc(), dt.toDate());
-        passengersService.updatePassengers(passengersInfo);
-        ticketInfo.setPassenger(passengersService.getPassengerByPassport(rfb.getNumdoc()));
+//        Создали пассажира, добавили пассажира к билету.
+//        Если пасажир с таки мпаспортом уже имеется то юзаем его а не создаем нового
+        PassengersInfo passengersInfo;
+        if (passengersService.getPassengerByPassport(rfb.getNumdoc()) != null) {
+            passengersInfo = passengersService.getPassengerByPassport(rfb.getNumdoc());
+        } else {
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd");
+            DateTime dt = fmt.parseDateTime(rfb.getBdate());
+            passengersInfo = new PassengersInfo(rfb.getFirstname(), rfb.getLastname(), rfb.getNumdoc(), dt.toDate());
+            passengersService.updatePassengers(passengersInfo);
+        }
+        ticketInfo.setPassenger(passengersInfo);
+//        По индексам нашли выбранный рейс и выбранный класс и добавили их к билету
         String id = (String) session.getAttribute("flightIndex");
-        System.out.println(id);
         Long flight = Long.valueOf(id.split(":")[0]);
-        Long flightClass = Long.valueOf(id.split(":")[1])+1;
+        Long flightClass = Long.valueOf(id.split(":")[1]) + 1;
         ticketInfo.setFlight(flightService.getFlightById(flight));
         ticketInfo.setFlight_class(flightService.getFlightClassById(flightClass));
+//        Билет готов, занесли его в бд
         ticketService.addTicket(ticketInfo);
-        model.addAttribute("ticket", ticketInfo);
+        model.addAttribute("ticket", ticketService.getTicketInfoBuNum(ticketInfo.getNum()));
         return "finish";
     }
 }

@@ -37,7 +37,6 @@ public class SimpleMailManager {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(COMPANY_GMAIL));
             message.setSubject("Контактная форма");
             message.setText(text);
-
             Transport.send(message);
         } catch (MessagingException e) {
             throw new RuntimeException(e);
@@ -54,7 +53,22 @@ public class SimpleMailManager {
                     "Ваш логин : " + user_name+"\n"+
                     "Ваш пароль: " + password+"\n"+
                     "Сохраните это письмо! Пока возможности восстановления пароля на сайте нет, но мы будем развиваться!");
+            Transport.send(message);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    public void changePass(String password) {
+        try {
+            Message message = new MimeMessage(getSession());
+            message.setFrom(new InternetAddress(COMPANY_GMAIL));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user_name));
+            message.setSubject("Смена пароля от аккаунта Airline tickets");
+            message.setText("Вы сменили пароль на сайте Airline tickets\n" +
+                    "Ваш новый пароль: " + password+"\n"+
+                    "Ваш логин : " + user_name+"\n"+
+                    "Сохраните это письмо! Пока возможности восстановления пароля на сайте нет, но мы будем развиваться!");
             Transport.send(message);
         } catch (MessagingException e) {
             throw new RuntimeException(e);

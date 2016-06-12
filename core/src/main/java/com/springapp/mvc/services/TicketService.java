@@ -33,7 +33,7 @@ public class TicketService {
         BookInfo bookres = null;
         if (passengers != null) {
             for (PassengersInfo passenger : passengers) {
-                if ((bookres = bookService.getBookByName(book) )!=null)
+                if ((bookres = bookService.getBookByName(book)) != null)
                     if ((tickets = ticketRepository.getTicketInfoByBookIdAndPassengerIdOrderById(
                             bookres.getId(), passenger.getId())) != null) {
                         flightService.updateCheckInInfo();
@@ -42,6 +42,11 @@ public class TicketService {
             }
         }
         return null;
+    }
+
+    @Transactional
+    public List<TicketInfo> getTicketsByBook(BookInfo book) {
+        return ticketRepository.getTicketInfoByBookId(book.getId());
     }
 
     @Transactional
@@ -66,12 +71,19 @@ public class TicketService {
     }
 
     @Transactional
+    public TicketInfo getTicketInfoBuNum(Long num) {
+        return ticketRepository.getTicketInfoByNum(num);
+    }
+
+    @Transactional
     public List<TicketInfo> getTickets() {
         return ticketRepository.findAll();
     }
 
     @Transactional
-    public void addTicket(TicketInfo ticketInfo) {ticketRepository.save(ticketInfo);}
+    public void addTicket(TicketInfo ticketInfo) {
+        ticketRepository.save(ticketInfo);
+    }
 
     @Transactional
     public void deleteTicket(Long id) {
@@ -85,7 +97,12 @@ public class TicketService {
 
     @Transactional
     public Long generateNum() {
-        long num = ticketRepository.findTop1ByOrderByIdDesc().getNum() + 1;
+        long num;
+        if (ticketRepository.findTop1ByOrderByIdDesc() != null) {
+            num = ticketRepository.findTop1ByOrderByIdDesc().getNum() + 1;
+        } else {
+            num = 452389010000L;
+        }
         return num;
     }
 }

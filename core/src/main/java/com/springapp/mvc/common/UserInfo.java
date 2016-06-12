@@ -21,9 +21,6 @@ public class UserInfo {
     private String role;
     private String phone;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    private List<BookInfo> books;
-
     public UserInfo(String login, String hashPass, String fio, String role, String phone) {
         this.login = login;
         this.hashPass = hashPass;
@@ -81,14 +78,6 @@ public class UserInfo {
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public List<BookInfo> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<BookInfo> books) {
-        this.books = books;
     }
 }
 

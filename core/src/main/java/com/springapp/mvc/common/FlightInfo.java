@@ -138,4 +138,5 @@ public class FlightInfo {
     public void setCheckInOpen(Boolean checkInOpen) {
         this.checkInOpen = checkInOpen;
     }
+
 }
