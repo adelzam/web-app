@@ -6,9 +6,10 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
+import static com.springapp.mvc.sender.CompanyMailAddressConstants.COMPANY_GMAIL;
+import static com.springapp.mvc.sender.CompanyMailAddressConstants.COMPANY_PASSWORD;
+
 public class SimpleMailManager {
-    private final String COMPANY_GMAIL = "airline.tickets.course.su@gmail.com";
-    private final String COMPANY_PASSWORD = "1.airline.tickets.2";
     private String user_name;
     private Properties props;
 
@@ -50,8 +51,8 @@ public class SimpleMailManager {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user_name));
             message.setSubject("Подтверждение регистрации Airline tickets");
             message.setText("Вы прошли успешную регистрацию на сайте Airline tickets\n" +
-                    "Ваш логин : " + user_name+"\n"+
-                    "Ваш пароль: " + password+"\n"+
+                    "Ваш логин : " + user_name + "\n" +
+                    "Ваш пароль: " + password + "\n" +
                     "Сохраните это письмо! Пока возможности восстановления пароля на сайте нет, но мы будем развиваться!");
             Transport.send(message);
         } catch (MessagingException e) {
@@ -66,8 +67,8 @@ public class SimpleMailManager {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(user_name));
             message.setSubject("Смена пароля от аккаунта Airline tickets");
             message.setText("Вы сменили пароль на сайте Airline tickets\n" +
-                    "Ваш новый пароль: " + password+"\n"+
-                    "Ваш логин : " + user_name+"\n"+
+                    "Ваш новый пароль: " + password + "\n" +
+                    "Ваш логин : " + user_name + "\n" +
                     "Сохраните это письмо! Пока возможности восстановления пароля на сайте нет, но мы будем развиваться!");
             Transport.send(message);
         } catch (MessagingException e) {
